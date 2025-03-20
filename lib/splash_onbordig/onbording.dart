@@ -42,7 +42,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         fontWeight: FontWeight.bold,
         color: Colors.white, // Text color
       ),
-      image: 'assets/images/slide2.png',
+      image: 'assets/images/slide2.jpg',
       description: Text(
         "انضم إلى منصة تجمع الطهاة الموهوبين مع العملاء الباحثين عن أفضل الأطباق المنزلية",
       ),
@@ -118,27 +118,24 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
           // Smooth Page Indicator
           Positioned(
-            bottom: 100,
-            left: 0,
-            right: 0,
-            child: Center(
-              child: SmoothPageIndicator(
-                controller: _pageController,
-                count: _onboardingItems.length,
-                effect: const ExpandingDotsEffect(
-                  activeDotColor: Colors.white, // Active dot color
-                  dotColor: Colors.white, // Inactive dot color
-                  dotHeight: 10,
-                  dotWidth: 10,
-                  spacing: 8, // Space between dots
-                ),
+            bottom: 30, // Adjust the distance from the bottom
+            left: 20, // Adjust the distance from the left
+            child: SmoothPageIndicator(
+              controller: _pageController,
+              count: _onboardingItems.length,
+              effect: const ExpandingDotsEffect(
+                activeDotColor: Colors.white, // Active dot color
+                dotColor: Colors.orange, // Inactive dot color
+                dotHeight: 10,
+                dotWidth: 10,
+                spacing: 8, // Space between dots
               ),
             ),
           ),
 
           // Next button with only ">" sign
           Positioned(
-            bottom: 30,
+            bottom: 20,
             right: 20,
             child:
                 _currentPage == _onboardingItems.length - 1
@@ -159,11 +156,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           vertical: 10,
                         ),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                            8,
-                          ), // Rounded corners
-                        ),
+                          borderRadius: BorderRadius.circular(30),
+                        ), // Rounded corners
                       ),
+
                       child: Text(
                         "ابدأ الآن", // "Get Started" in Arabic
                         style: TextStyle(
@@ -186,16 +182,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           0xFFFFA500,
                         ), // Button color (#FFA500)
                         padding: EdgeInsets.all(
-                          12,
+                          20,
                         ), // Adjust padding for the ">" sign
-                        shape: CircleBorder(), // Make the button circular
+                        // Make the button circular
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
                       ),
                       child: Text(
-                        ">", // Only ">" sign
+                        "التالي",
                         style: TextStyle(
                           fontFamily: 'Changa', // Use Changa font
-                          fontSize: 20,
-                          color: Colors.white, // Text color
+                          fontSize: 18,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold, // Text color
                         ),
                       ),
                     ),
