@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:foodia_chef/home.dart';
 import 'package:foodia_chef/splash_onbordig/onboardingPage.dart';
 import 'package:foodia_chef/splash_onbordig/onboarding_model.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -100,10 +99,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             child: TextButton(
               onPressed: () {
                 // Navigate directly to the home screen
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
-                );
+                Navigator.pushNamed(context, "/login");
               },
               child: Text(
                 "تخطي", // "Skip" in Arabic
@@ -142,10 +138,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ? ElevatedButton(
                       onPressed: () {
                         // Navigate to the home screen after onboarding
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => HomeScreen()),
-                        );
+                        Navigator.pushNamed(context, "/login");
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color(
