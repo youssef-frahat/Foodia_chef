@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:foodia_chef/auth/page/forgotpassword.dart';
 import 'package:foodia_chef/auth/page/login_page.dart';
+import 'package:foodia_chef/auth/page/register.dart';
 import 'package:foodia_chef/home.dart';
 import 'package:foodia_chef/splash_onbordig/onbording.dart';
 
@@ -16,6 +18,8 @@ class Foodia extends StatelessWidget {
       routes: {
         '/home': (context) => HomeScreen(),
         '/login': (context) => LoginPage(),
+        '/forgotpassword': (context) => ForgotpasswordPage(),
+        '/register': (context) => RegisterPage(),
       },
     );
   }
