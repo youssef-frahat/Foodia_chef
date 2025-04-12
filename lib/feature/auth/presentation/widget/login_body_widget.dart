@@ -7,8 +7,6 @@ import 'package:foodia_chef/core/widgets/buttons/custom_button.dart';
 import 'package:foodia_chef/feature/auth/presentation/widget/signup_prompt_row.dart';
 
 import '../../../../core/app_config/app_images.dart';
-import '../../../../core/app_config/font_styles.dart';
-import '../../../../core/widgets/header_text.dart';
 import '../../../../core/widgets/text_form_field/custom_text_form_field.dart';
 import '../../../../core/widgets/text_form_field/password_field.dart';
 import 'remember_me_row.dart';
