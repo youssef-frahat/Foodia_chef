@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:foodia_chef/customs/styling.dart';
+import 'package:foodia_chef/feature/auth/presentation/widget/customs/styling.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:foodia_chef/core/extensions/space_extension.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:foodia_chef/customs/styling.dart';
+import 'package:foodia_chef/feature/auth/presentation/widget/customs/styling.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -117,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 30),
+                30.height,
 
                   // Email Field
                   CustomTextField(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foodia_chef/auth/page/login_page.dart';
-import 'package:foodia_chef/customs/styling.dart';
+import 'package:foodia_chef/feature/auth/presentation/screens/login_page.dart';
+import 'package:foodia_chef/feature/auth/presentation/widget/customs/styling.dart';
 
 class ForgotpasswordPage extends StatelessWidget {
   const ForgotpasswordPage({super.key});

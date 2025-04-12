@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=3.7.2 <4.0.0"
+  sdk: ^3.6.0
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -28,40 +28,32 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.8
-  flutter_svg: ^2.0.17
-  flutter_native_splash: ^2.4.5
-  smooth_page_indicator: ^1.2.1
-  google_fonts: ^6.2.1
-  flutter_bloc: ^9.1.0
-  flutter_secure_storage: ^9.2.4
-  shared_preferences: ^2.5.2
+  flutter_bloc: null
+  flutter_native_splash: null
+  flutter_screenutil: ^5.9.3
+  flutter_secure_storage: null
+  flutter_svg: null
+  get_it: ^8.0.3
+  go_router: ^14.8.1
+  google_fonts: null
+  shared_preferences: null
+  smooth_page_indicator: null
 
 dev_dependencies:
+  flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
 
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
-  flutter_lints: ^5.0.0
-
-
 flutter_native_splash:
-  color: "#FFA500"  # Light orange color
-  image: assets/images/logo.jpg  # Path to your logo image
+  color: "#FFA500" # Light orange color
+  image: assets/images/logo.jpg # Path to your logo image
   android: true
   ios: true
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
 # The following section is specific to Flutter packages.
 flutter:
 
@@ -77,10 +69,8 @@ flutter:
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
-
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/to/asset-from-package
-
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
@@ -92,7 +82,5 @@ flutter:
         - asset: assets/fonts/Changa-Regular.ttf
         - asset: assets/fonts/Changa-Bold.ttf
           weight: 700
-      
-  #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package

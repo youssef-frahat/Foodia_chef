@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodia_chef/splash_onbordig/onboarding_model.dart';
+import 'package:foodia_chef/feature/splash_onbordig/onboarding_model.dart';
 
 class OnboardingPage extends StatelessWidget {
   final OnboardingItem item;

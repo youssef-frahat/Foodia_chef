@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:foodia_chef/auth/page/forgotpassword.dart';
-import 'package:foodia_chef/auth/page/login_page.dart';
-import 'package:foodia_chef/auth/page/register.dart';
-import 'package:foodia_chef/home.dart';
-import 'package:foodia_chef/splash_onbordig/onbording.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'core/routes/app_router.dart';
 
 class Foodia extends StatelessWidget {
-  const Foodia({super.key});
+  final AppRouter appRouter;
+
+  const Foodia({super.key, required this.appRouter});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Foodia Chef',
+    return ScreenUtilInit(
+      designSize: const Size(428, 922),
+      splitScreenMode: true,
 
-      debugShowCheckedModeBanner: false,
-      home: OnboardingScreen(),
-      routes: {
-        '/home': (context) => HomeScreen(),
-        '/login': (context) => LoginPage(),
-        '/forgotpassword': (context) => ForgotpasswordPage(),
-        '/register': (context) => RegisterPage(),
-      },
+      minTextAdapt: true,
+      child: MaterialApp.router(
+        routerConfig: appRouter.router, 
+        title: 'Foodia Chef',
+        debugShowCheckedModeBanner: false,
+      ),
     );
   }
 }

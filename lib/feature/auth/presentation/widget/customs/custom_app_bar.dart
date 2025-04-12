@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodia_chef/customs/styling.dart';
+import 'package:foodia_chef/feature/auth/presentation/widget/customs/styling.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
