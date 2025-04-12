@@ -74,11 +74,7 @@ class LoginBodyWidget extends StatelessWidget {
             },
           ),
           60.height,
-          SignupPromptRow(
-               onSignupTap: () {
-                 // Navigate to signup page
-               },
-          ),
+          SignupPromptRow(),
           135.height,
         ],
       ),
