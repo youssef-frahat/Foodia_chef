@@ -12,12 +12,12 @@ abstract class FontStyles {
   static final textStyle14 = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w500,
-    color: AppColors.hintColor,
+    color: AppColors.textformColor,
   );
   static final textStyle16 = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeight.w600,
-    color: AppColors.hintColor,
+    color: AppColors.textformColor,
   );
   static final textStyle18 = TextStyle(
     fontSize: 18.sp,

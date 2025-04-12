@@ -4,7 +4,7 @@ import 'package:foodia_chef/core/routes/routing_observer.dart';
 import 'package:foodia_chef/core/routes/screen_withfade_transition.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../feature/auth/presentation/screens/login_page.dart';
+import '../../feature/auth/presentation/screens/login_screen.dart';
 import '../../feature/splash_onbordig/onbording.dart';
 
 class AppRouter {
@@ -27,7 +27,7 @@ class AppRouter {
                   screenWithFadeTransition(
                     context: context,
                     state: state,
-                    child: const LoginPage(),
+                    child: const LoginScreen(),
                   ),
             ),
               GoRoute(

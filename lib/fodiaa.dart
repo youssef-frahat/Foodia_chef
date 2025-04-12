@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -16,6 +17,9 @@ class Foodia extends StatelessWidget {
 
       minTextAdapt: true,
       child: MaterialApp.router(
+          localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
         routerConfig: appRouter.router, 
         title: 'Foodia Chef',
         debugShowCheckedModeBanner: false,
