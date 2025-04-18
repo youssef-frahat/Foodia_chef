@@ -1,10 +1,4 @@
 // import 'dart:io';
-
-// import 'package:alice/core/alice_logger.dart';
-// import 'package:alice/model/alice_configuration.dart';
-// import 'package:alice_dio/alice_dio_adapter.dart';
-// import 'package:alice/alice.dart';
-
 // import 'package:dio/dio.dart';
 // import 'package:easy_localization/easy_localization.dart';
 // import 'package:flutter/foundation.dart';
@@ -24,12 +18,7 @@
 
 // class DioService implements NetworkService {
 //   late Dio _dio;
-//   static Alice alice = Alice(
-//       configuration: AliceConfiguration(
-//           showShareButton: true,
-//           navigatorKey: AppRouter.appNavigatorKey,
-//           showInspectorOnShake: true,
-//           showNotification: true));
+
 //   DioService() {
 //     _initDio();
 //   }
@@ -52,33 +41,21 @@
 //       ..options.responseType = ResponseType.json;
 
 //     if (kDebugMode) {
-//       /// Create Alice Dio Adapter
-//       AliceDioAdapter aliceDioAdapter = AliceDioAdapter();
-
-//       /// Add adapter to Alice
-//       alice.addAdapter(aliceDioAdapter);
-
-//       /// Add interceptor to Dio
-//       _dio.interceptors.add(aliceDioAdapter);
+//       /// Add PrettyDioLogger for logging
 //       _dio.interceptors.add(PrettyDioLogger(
 //         requestHeader: true,
 //         requestBody: true,
 //         responseHeader: true,
 //         responseBody: true,
 //       ));
+
+//       /// Add custom interceptor
 //       _dio.interceptors.add(CustomInterceptor(dio: _dio));
 //     }
 //   }
 
 //   Future<Map<String, dynamic>> _getDefaultHeaders(bool isWithoutToken) async {
 //     final Map<String, dynamic> headers = {};
-// /*
-//     headers.addAll({
-//       HttpHeaders.acceptHeader: ContentType.json,
-//       'Accept-Language':
-//           AppRouter.parentNavigatorKey.currentContext!.locale.languageCode,
-//       'time-zone': 'en',
-//     });*/
 //     if (isWithoutToken != true) {
 //       final token = await SecureLocalStorage.read(PrefsKeys.token);
 //       if (token?.isNotEmpty == true) {
@@ -96,8 +73,7 @@
 //       final response = await _dio.request(networkRequest.path,
 //           data: networkRequest.hasBodyAndProgress()
 //               ? networkRequest.isFormData
-//                   ? networkRequest
-//                       .formDataBody /* FormData.fromMap(networkRequest.body!)*/
+//                   ? networkRequest.formDataBody
 //                   : networkRequest.body
 //               : networkRequest.body,
 //           queryParameters: networkRequest.queryParameters,
