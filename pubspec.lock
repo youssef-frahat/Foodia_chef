@@ -209,6 +209,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.2"
+<<<<<<< HEAD
   cross_file:
     dependency: transitive
     description:
@@ -217,6 +218,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.4+2"
+=======
+>>>>>>> 5e02bc14110091e1d17c1818a990c00af4670ae3
   crypto:
     dependency: transitive
     description:
@@ -1106,6 +1109,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.5"
+<<<<<<< HEAD
   timezone:
     dependency: transitive
     description:
@@ -1114,6 +1118,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.9.4"
+=======
+>>>>>>> 5e02bc14110091e1d17c1818a990c00af4670ae3
   timing:
     dependency: transitive
     description:

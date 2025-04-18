@@ -9,11 +9,11 @@ class CustomTabBar extends StatelessWidget implements PreferredSizeWidget {
   final String tab1Title, tab2Title;
 
   const CustomTabBar({
-    Key? key,
+    super.key,
     required this.onTap,
     required this.tab1Title,
     required this.tab2Title,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
