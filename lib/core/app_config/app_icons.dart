@@ -7,6 +7,7 @@ class AppIcons {
   static const String eyeClosed = "$_iconBase/eye-closed.svg";
   static const String eyeOpen = "$_iconBase/eye-open.png";
   static const String notifications = "$_iconBase/notifications.svg";
+  static const String frame = "$_iconBase/frame.svg";
 
    //*Nav Bar
   static const String home = "$_navBar/home.svg";

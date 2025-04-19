@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../app_config/app_colors.dart';
+import '../../app_config/font_styles.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
@@ -63,7 +64,7 @@ class CustomButton extends StatelessWidget {
                     )
                   : null,
               borderRadius: BorderRadius.all(
-                radius ?? Radius.circular(50), // زوايا دائرية كاملة
+                radius ?? Radius.circular(50), 
               ),
               gradient: isBackgroundGradient ? gradient : null,
             ),
@@ -82,11 +83,7 @@ class CustomButton extends StatelessWidget {
                         child: Text(
                           text,
                           style: style ??
-                              Theme.of(context).textTheme.labelLarge?.copyWith(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: fontSize ?? 18.sp,
-                                  ),
+                              FontStyles.textStyle16
                         ),
                       ),
                     ),
@@ -105,22 +102,52 @@ class CustomButton extends StatelessWidget {
 
 
 class CustomElevationButton extends StatelessWidget {
-  const CustomElevationButton({super.key});
+  final String title;
+  final Color backgroundColor;
+  final Color textColor;
+  final double fontSize;
+  final VoidCallback onPressed;
+  final EdgeInsetsGeometry padding;
+  final double elevation;
+  final double borderRadius;
+final double width;
+  const CustomElevationButton({
+    super.key,
+    required this.title,  
+    required this.onPressed, 
+    this.backgroundColor = Colors.white,
+    this.textColor = Colors.black, 
+    this.fontSize = 16.0, 
+    this.padding = const EdgeInsets.symmetric(vertical: 14.0, horizontal: 16.0),
+    this.elevation = 0.0, 
+    this.borderRadius = 50.0,
+    this.width = double.infinity,
+  });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: double.infinity,
-        child: ElevatedButton(
-          onPressed: () {},
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.white,
-            elevation: 0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(50),
-            ),
+       width: width,
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: backgroundColor,
+          elevation: elevation,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(borderRadius),
           ),
-          child: const Text(""),
-        ));
+          padding: padding,
+        ),
+        child: Text(
+          title,
+          style: TextStyle(
+            fontSize: fontSize,
+            color: textColor,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
   }
-}
+}   
+

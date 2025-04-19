@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../core/app_config/app_icons.dart';
 import '../../core/app_config/app_strings.dart';
-import '../home/presentation/screens/home_screen.dart';
+import '../home/home_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});

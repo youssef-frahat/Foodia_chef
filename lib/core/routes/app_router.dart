@@ -6,7 +6,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../feature/auth/login/presentation/screens/login_screen.dart';
 import '../../feature/bottom_navigation_bar/custom_button_nav_bar.dart';
-import '../../feature/home/presentation/screens/home_screen.dart';
 import '../../feature/splash_onbordig/onbording.dart';
 
 class AppRouter {

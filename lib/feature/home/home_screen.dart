@@ -5,6 +5,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foodia_chef/core/app_config/app_icons.dart';
 import 'package:foodia_chef/core/app_config/app_images.dart';
 
+import 'all_order/presentation/screen/all_order_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -25,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ];
 
     List<Widget> allCategory = [
-      Container(color: Colors.red),
+      AllOrderScreen(),
       Container(color: Colors.green),
       Container(color: Colors.blue),
       Container(color: Colors.yellow),
@@ -78,7 +80,6 @@ class _HomeScreenState extends State<HomeScreen> {
               thickness: 3.h,
               color: Colors.grey[300],
             ),
-            
             SizedBox(
               height: 60,
               width: MediaQuery.sizeOf(context).width * 0.93,
@@ -120,7 +121,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
 
-            // Display the selected category content
             SizedBox(
               height: MediaQuery.sizeOf(context).height * 0.48,
               width: MediaQuery.sizeOf(context).width * 0.93,

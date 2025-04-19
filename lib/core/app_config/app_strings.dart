@@ -16,5 +16,7 @@ class AppStrings {
  static const String home = "الرئيسية";
   static const String profile = "الملف الشخصي";
   static const String eating = "اكلاتي";
+  static const String accpted = "قبول";
+  static const String rejected = "رفض";
   static const String wallet = "المحفظة";
 }
