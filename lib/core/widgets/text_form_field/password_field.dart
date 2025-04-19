@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+
 import '../../app_config/app_colors.dart';
 import '../../app_config/app_icons.dart';
 import 'custom_text_form_field.dart';
-
 
 class PasswordField extends StatefulWidget {
   final String label, hint;
@@ -38,12 +38,12 @@ class _PasswordFieldState extends State<PasswordField> {
           icon: !_obscure
               ? const Icon(
                   Icons.visibility_outlined,
-                  color: AppColors.black,
+                  color: AppColors.borderColor,
                 )
               : SvgPicture.asset(
                   AppIcons.eyeClosed,
                   colorFilter: const ColorFilter.mode(
-                    AppColors.black,
+                    AppColors.borderColor,
                     BlendMode.srcIn,
                   ),
                 )),
