@@ -5,6 +5,7 @@ import 'package:foodia_chef/core/routes/screen_withfade_transition.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../feature/auth/login/presentation/screens/login_screen.dart';
+import '../../feature/auth/login/presentation/screens/register_screen.dart';
 import '../../feature/splash_onbordig/onbording.dart';
 
 class AppRouter {
@@ -25,21 +26,32 @@ class AppRouter {
               name: Routes.login,
               pageBuilder: (context, GoRouterState state) =>
                   screenWithFadeTransition(
-                    context: context,
-                    state: state,
-                    child: const LoginScreen(),
-                  ),
+                context: context,
+                state: state,
+                child: const LoginScreen(),
+              ),
             ),
-              GoRoute(
+            GoRoute(
               parentNavigatorKey: appNavigatorKey,
               path: Routes.onboardingScreen,
               name: Routes.onboardingScreen,
               pageBuilder: (context, GoRouterState state) =>
                   screenWithFadeTransition(
-                    context: context,
-                    state: state,
-                    child: const OnboardingScreen(),
-                  ),
+                context: context,
+                state: state,
+                child: const OnboardingScreen(),
+              ),
+            ),
+            GoRoute(
+              parentNavigatorKey: appNavigatorKey,
+              path: Routes.registerScreen,
+              name: Routes.registerScreen,
+              pageBuilder: (context, GoRouterState state) =>
+                  screenWithFadeTransition(
+                context: context,
+                state: state,
+                child: const RegisterScreen(),
+              ),
             ),
           ],
         );
