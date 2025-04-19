@@ -10,4 +10,7 @@ class AppStrings {
   static const String pleaseEnterYourPassword = 'الرجاء ادخال كلمة المرور';
   static const String rememberMe = 'تذكرني';
   static const String forgotPassword = 'هل نسيت كلمة المرور؟';
+  static const String loginSuccess = 'تم تسجيل الدخول بنجاح';
+  static const String loginFailed = 'فشل تسجيل الدخول';
+    static const String checkInternetConnection = 'الرجاء التحقق من اتصالك بالانترنت';
 }
