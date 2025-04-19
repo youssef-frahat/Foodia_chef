@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foodia_chef/core/extensions/space_extension.dart';
 import 'package:foodia_chef/core/widgets/buttons/custom_button.dart';
 
-import '../../../../../core/app_config/app_colors.dart';
 import '../../../../../core/app_config/app_icons.dart';
 import '../../../../../core/app_config/app_strings.dart';
 import '../../../../../core/app_config/font_styles.dart';
@@ -115,7 +114,6 @@ class OrderCardWidget extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0.h),
               child: Row(
-                
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CustomElevationButton(
@@ -128,7 +126,7 @@ class OrderCardWidget extends StatelessWidget {
                     borderRadius: 20.0,
                     width: 140.w,
                   ),
-                   CustomElevationButton(
+                  CustomElevationButton(
                     title: AppStrings.rejected,
                     onPressed: () {},
                     backgroundColor: Color(0xFF5F4B46),
