@@ -6,12 +6,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodia_chef/core/app_config/app_colors.dart';
 import 'package:foodia_chef/core/app_config/app_strings.dart';
 import 'package:foodia_chef/core/extensions/space_extension.dart';
+import 'package:foodia_chef/core/helpers/extensions.dart';
 import 'package:foodia_chef/core/widgets/buttons/custom_button.dart';
 import 'package:foodia_chef/feature/auth/login/presentation/widget/signup_prompt_row.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/app_config/app_images.dart';
 import '../../../../../core/helpers/messages.dart';
+import '../../../../../core/routes/routes.dart';
 import '../../../../../core/widgets/text_form_field/custom_text_form_field.dart';
 import '../../../../../core/widgets/text_form_field/password_field.dart';
 import '../cubit/cubit/login_cubit.dart';
@@ -50,12 +52,10 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
          if (state is LoginLoading) {
             AppMessages.showLoading(context);
           } else if (state is LoginSuccess) {
-            context.pop();
-            AppMessages.showSuccess(context, AppStrings.loginSuccess );
-
-            // context.go(AppRoutes.bottomNavBar);
+            AppMessages.showSuccess(context, AppStrings.loginSuccess);
+            context.go(Routes.bottomNavBar);
           } else if (state is LoginError) {
-            context.pop();
+            // context.pop();
             AppMessages.showError(
               context,
               AppStrings.loginFailed,

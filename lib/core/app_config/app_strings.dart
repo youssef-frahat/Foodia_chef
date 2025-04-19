@@ -12,5 +12,9 @@ class AppStrings {
   static const String forgotPassword = 'هل نسيت كلمة المرور؟';
   static const String loginSuccess = 'تم تسجيل الدخول بنجاح';
   static const String loginFailed = 'فشل تسجيل الدخول';
-    static const String checkInternetConnection = 'الرجاء التحقق من اتصالك بالانترنت';
+ static const String checkInternetConnection = 'الرجاء التحقق من اتصالك بالانترنت';
+ static const String home = "الرئيسية";
+  static const String profile = "الملف الشخصي";
+  static const String eating = "اكلاتي";
+  static const String wallet = "المحفظة";
 }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foodia_chef/core/extensions/space_extension.dart';
 
 import '../app_config/app_colors.dart';
+
 
 class AppMessages {
   static Future<dynamic> showLoading(BuildContext context) =>
@@ -15,31 +18,39 @@ class AppMessages {
         ),
       );
 
+
   static void showError(BuildContext context, String error,
       [SnackBarAction? action]) {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        content: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-            border: const Border(
-              top: BorderSide(
-                color: Colors.red,
-                width: 4,
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: AppColors.secondaryButton,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(12.r)),
+          side: const BorderSide(
+            color: AppColors.secondaryColor,
+          ),
+        ),
+        content: Row(
+          children: [
+            const Icon(
+              Icons.error_sharp,
+              color: AppColors.errorColor,
+            ),
+            8.width,
+            Flexible(
+              child: Text(
+                error,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'Bebas Neue',
+                  fontWeight: FontWeight.w400,
+                  fontSize: 18.sp,
+                ),
               ),
             ),
-          ),
-          padding: const EdgeInsets.all(16),
-          child: Text(
-            error,
-            style: const TextStyle(
-              color: AppColors.primaryColor,
-            ),
-          ),
+          ],
         ),
         action: action,
       ),
@@ -51,32 +62,35 @@ class AppMessages {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        content: Container(
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(10),
-            ),
-            border: Border(
-              top: BorderSide(
-                color: Colors.green,
-                width: 4,
-              ),
-            ),
-          ),
-          padding: const EdgeInsets.all(16),
-          child: Text(
-            message,
-            style: const TextStyle(
-              color: Colors.orange,
-            ),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: AppColors.secondaryButton,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(12.r)),
+          side: const BorderSide(
+            color: AppColors.secondaryColor,
           ),
         ),
+        content: Row(
+          children: [
+            const Icon(
+              Icons.check_circle,
+              color: Colors.green,
+            ),
+            8.width,
+            Flexible(
+              child: Text(
+                message,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'Bebas Neue',
+                  fontWeight: FontWeight.w400,
+                  fontSize: 18.sp,
+                ),
+              ),
+            ),
+          ],
+        ),
         action: action,
-        behavior: SnackBarBehavior.floating,
-        margin: const EdgeInsets.all(10),
       ),
     );
   }
