@@ -13,7 +13,6 @@ class AppStrings {
   static const String forgotPassword = 'هل نسيت كلمة المرور؟';
   static const String loginSuccess = 'تم تسجيل الدخول بنجاح';
   static const String loginFailed = 'فشل تسجيل الدخول';
-<<<<<<< HEAD
   static const String checkInternetConnection =
       'الرجاء التحقق من اتصالك بالانترنت';
   static const String signup = 'انشاء حساب';
@@ -32,8 +31,7 @@ class AppStrings {
   static const String pleaseEnterValidPhoneNumber =
       'الرجاء ادخال رقم هاتف صحيح';
   static const String passwordNotMatch = 'كلمة المرور غير متطابقة';
-=======
- static const String checkInternetConnection = 'الرجاء التحقق من اتصالك بالانترنت';
+ static const String pleaseCheckInternetConnection = 'الرجاء التحقق من اتصالك بالانترنت';
  static const String home = "الرئيسية";
   static const String profile = "الملف الشخصي";
   static const String eating = "اكلاتي";
@@ -44,5 +42,4 @@ class AppStrings {
   static const String prepared = "تم التحضير";
   static const String inPreparation = "قيد التحضير";
   static const String wallet = "المحفظة";
->>>>>>> origin/master
 }

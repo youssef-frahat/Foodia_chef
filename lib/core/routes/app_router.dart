@@ -5,11 +5,8 @@ import 'package:foodia_chef/core/routes/screen_withfade_transition.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../feature/auth/login/presentation/screens/login_screen.dart';
-<<<<<<< HEAD
 import '../../feature/auth/login/presentation/screens/register_screen.dart';
-=======
 import '../../feature/bottom_navigation_bar/custom_button_nav_bar.dart';
->>>>>>> origin/master
 import '../../feature/splash_onbordig/onbording.dart';
 
 class AppRouter {
@@ -45,7 +42,6 @@ class AppRouter {
                 state: state,
                 child: const OnboardingScreen(),
               ),
-<<<<<<< HEAD
             ),
             GoRoute(
               parentNavigatorKey: appNavigatorKey,
@@ -57,8 +53,6 @@ class AppRouter {
                 state: state,
                 child: const RegisterScreen(),
               ),
-=======
->>>>>>> origin/master
             ),
             GoRoute(
               path: Routes.bottomNavBar,
