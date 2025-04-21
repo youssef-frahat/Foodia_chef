@@ -6,6 +6,9 @@ import 'package:foodia_chef/core/app_config/app_icons.dart';
 import 'package:foodia_chef/core/app_config/app_images.dart';
 
 import 'all_order/presentation/screen/all_order_screen.dart';
+import 'canceled_requests/presentation/screen/canceled_requests.dart';
+import 'completed_requests/presentation/screen/completedr_equests.dart';
+import 'requests_in_preparation/presentation/screen/requestsIn_preparation.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -28,9 +31,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
     List<Widget> allCategory = [
       AllOrderScreen(),
-      Container(color: Colors.green),
-      Container(color: Colors.blue),
-      Container(color: Colors.yellow),
+      RequestsinPreparation(),
+      CompletedrEquests(),
+      CanceledRequests(),
     ];
 
     return Scaffold(

@@ -18,5 +18,9 @@ class AppStrings {
   static const String eating = "اكلاتي";
   static const String accpted = "قبول";
   static const String rejected = "رفض";
+  static const String completed = "مكتمل";
+  static const String canceled = "مرفوض";
+  static const String prepared = "تم التحضير";
+  static const String inPreparation = "قيد التحضير";
   static const String wallet = "المحفظة";
 }
