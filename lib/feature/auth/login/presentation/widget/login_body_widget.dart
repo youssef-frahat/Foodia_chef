@@ -12,6 +12,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../../core/app_config/app_images.dart';
 import '../../../../../core/helpers/messages.dart';
+import '../../../../../core/routes/routes.dart';
 import '../../../../../core/widgets/text_form_field/custom_text_form_field.dart';
 import '../../../../../core/widgets/text_form_field/password_field.dart';
 import '../cubit/cubit/login_cubit.dart';
@@ -29,6 +30,7 @@ class LoginBodyWidget extends StatefulWidget {
 class _LoginBodyWidgetState extends State<LoginBodyWidget> {
   late TextEditingController _phoneController, _passwordController;
   final _formKey = GlobalKey<FormState>();
+  bool _isRememberMeChecked = false;
   @override
   void initState() {
     super.initState();
@@ -47,21 +49,20 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
-         if (state is LoginLoading) {
-            AppMessages.showLoading(context);
-          } else if (state is LoginSuccess) {
-            context.pop();
-            AppMessages.showSuccess(context, AppStrings.loginSuccess );
-
-            // context.go(AppRoutes.bottomNavBar);
-          } else if (state is LoginError) {
-            context.pop();
-            AppMessages.showError(
-              context,
-              AppStrings.loginFailed,
-            );
-            log("error from state ${state.error}");
-          }
+        if (state is LoginLoading) {
+          
+          AppMessages.showLoading(context);
+        } else if (state is LoginSuccess) {
+          AppMessages.showSuccess(context, AppStrings.loginSuccess);
+          context.go(Routes.bottomNavBar);
+        } else if (state is LoginError) {
+          Navigator.of(context, rootNavigator: true).pop();
+          AppMessages.showError(
+            context,
+            state.error,
+          );
+          log("error from state ${state.error}");
+        }
       },
       builder: (context, state) {
         return Form(
@@ -114,7 +115,13 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
                   },
                 ),
                 12.height,
-                RememberMeRow(),
+                RememberMeRow(
+                  onRememberChanged: (bool value) {
+                    setState(() {
+                      _isRememberMeChecked = value;
+                    });
+                  },
+                ),
                 12.height,
                 CustomButton(
                   text: AppStrings.login1,
@@ -122,12 +129,17 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
                   radius: Radius.circular(50.r),
                   height: 50.h,
                   onTap: () {
-                     if (_formKey.currentState!.validate()) {
-                        context.read<LoginCubit>().login(
-                              phone: _phoneController.text,
-                              password: _passwordController.text,
-                            );
-                      }
+                    if (!_isRememberMeChecked) {
+                      AppMessages.showError(
+                          context, 'يجب الموافقة على شرط تذكرني أولاً');
+                      return;
+                    }
+                    if (_formKey.currentState!.validate()) {
+                      context.read<LoginCubit>().login(
+                            phone: _phoneController.text,
+                            password: _passwordController.text,
+                          );
+                    }
                   },
                 ),
                 60.height,

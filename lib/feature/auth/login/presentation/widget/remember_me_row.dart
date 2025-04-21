@@ -3,7 +3,9 @@ import 'package:foodia_chef/core/app_config/app_colors.dart';
 import 'package:foodia_chef/core/app_config/app_strings.dart';
 
 class RememberMeRow extends StatefulWidget {
-  const RememberMeRow({super.key});
+  final ValueChanged<bool> onRememberChanged;
+
+  const RememberMeRow({super.key, required this.onRememberChanged});
 
   @override
   State<RememberMeRow> createState() => _RememberMeRowState();
@@ -25,6 +27,7 @@ class _RememberMeRowState extends State<RememberMeRow> {
                 setState(() {
                   isRememberMe = value ?? false;
                 });
+                widget.onRememberChanged(isRememberMe);
               },
               activeColor: AppColors.black,
               checkColor: Colors.white,
@@ -43,7 +46,6 @@ class _RememberMeRowState extends State<RememberMeRow> {
         ),
         TextButton(
           onPressed: () {
-      
           },
           child: Text(
             AppStrings.forgotPassword,

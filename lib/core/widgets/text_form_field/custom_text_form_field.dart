@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../app_config/app_colors.dart';
 import '../../app_config/font_styles.dart';
 
+
 class CustomTextField extends StatefulWidget {
   final String hint;
   final String? label;
@@ -70,7 +71,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
                     ],
                   ),
                   style: widget.labelStyle ??
-                      Theme.of(context).textTheme.labelMedium,
+                      FontStyles.textStyle16
+                          .copyWith(fontWeight: FontWeight.w500),
                 ),
               ],
             ],
@@ -109,7 +111,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             });
             return value != null ? '' : null;
           },
-          style: widget.textStyle ?? Theme.of(context).textTheme.headlineSmall,
+          style: widget.textStyle,
           decoration: InputDecoration(
             hintText: widget.hint,
             hintStyle: FontStyles.textStyle14,
@@ -117,14 +119,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
               borderRadius: BorderRadius.circular(widget.borderRadius ?? 8.r),
               borderSide: const BorderSide(
                 color: AppColors.borderColor,
-                width: 3,
+                width: 1,
               ),
             ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8.r),
               borderSide: const BorderSide(
                 color: AppColors.borderColor,
-                width: 3,
+                width: 1,
               ),
             ),
             focusedErrorBorder: OutlineInputBorder(
@@ -143,9 +145,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8.r),
-              borderSide: const BorderSide(
-              color: AppColors.borderColor,
-                width: 3,
+              borderSide: BorderSide(
+                color: Colors.orange,
+                width: 1,
               ),
             ),
             prefixIcon: widget.prefix,

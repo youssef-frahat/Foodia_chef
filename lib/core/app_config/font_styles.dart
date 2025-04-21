@@ -12,7 +12,8 @@ abstract class FontStyles {
   static final textStyle14 = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w500,
-    color: AppColors.textformColor,
+    color: Color(0xFFF8A435),
+    fontFamily: 'Cairo',
   );
   static final textStyle16 = TextStyle(
     fontSize: 16.sp,
