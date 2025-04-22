@@ -50,7 +50,6 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state is LoginLoading) {
-          
           AppMessages.showLoading(context);
         } else if (state is LoginSuccess) {
           AppMessages.showSuccess(context, AppStrings.loginSuccess);
@@ -141,6 +140,7 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
                           );
                     }
                   },
+                  textColor: null,
                 ),
                 60.height,
                 SignupPromptRow(),

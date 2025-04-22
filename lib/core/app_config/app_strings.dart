@@ -42,4 +42,13 @@ class AppStrings {
   static const String prepared = "تم التحضير";
   static const String inPreparation = "قيد التحضير";
   static const String wallet = "المحفظة";
+    static const String bio = "الوصف";
+        static const String enterBio = "ادخل الوصف";
+  static const String pleaseEnterYourBio = "الرجاء ادخال الوصف";
+  static const String uploadProfilePicture = "رفع صورة الملف الشخصي";
+  
+
+
+
+
 }

@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../feature/auth/login/presentation/screens/login_screen.dart';
 import '../../feature/auth/login/presentation/screens/register_screen.dart';
+import '../../feature/auth/login/presentation/widget/second_register_body.dart';
 import '../../feature/bottom_navigation_bar/custom_button_nav_bar.dart';
 import '../../feature/splash_onbordig/onbording.dart';
 
@@ -52,6 +53,17 @@ class AppRouter {
                 context: context,
                 state: state,
                 child: const RegisterScreen(),
+              ),
+            ),
+            GoRoute(
+              parentNavigatorKey: appNavigatorKey,
+              path: Routes.register2Screen,
+              name: Routes.register2Screen,
+              pageBuilder: (context, GoRouterState state) =>
+                  screenWithFadeTransition(
+                context: context,
+                state: state,
+                child: const SecondPage(),
               ),
             ),
             GoRoute(

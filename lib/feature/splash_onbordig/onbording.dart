@@ -70,7 +70,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     ),
   ];
 
-  void _goToLogin() => context.goNamed(Routes.registerScreen);
+  void _goToLogin() => context.goNamed(Routes.login);
 
   @override
   Widget build(BuildContext context) {

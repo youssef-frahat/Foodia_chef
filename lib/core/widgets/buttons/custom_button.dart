@@ -39,7 +39,7 @@ class CustomButton extends StatelessWidget {
     this.radius,
     this.gradient,
     this.width,
-    this.height,
+    this.height, required textColor,
   });
 
   @override
@@ -64,7 +64,7 @@ class CustomButton extends StatelessWidget {
                     )
                   : null,
               borderRadius: BorderRadius.all(
-                radius ?? Radius.circular(50), 
+                radius ?? Radius.circular(50),
               ),
               gradient: isBackgroundGradient ? gradient : null,
             ),
@@ -80,11 +80,8 @@ class CustomButton extends StatelessWidget {
                     Flexible(
                       child: FittedBox(
                         fit: BoxFit.scaleDown,
-                        child: Text(
-                          text,
-                          style: style ??
-                              FontStyles.textStyle16
-                        ),
+                        child:
+                            Text(text, style: style ?? FontStyles.textStyle16),
                       ),
                     ),
                     if (icon != null) ...[
@@ -100,7 +97,6 @@ class CustomButton extends StatelessWidget {
   }
 }
 
-
 class CustomElevationButton extends StatelessWidget {
   final String title;
   final Color backgroundColor;
@@ -110,16 +106,16 @@ class CustomElevationButton extends StatelessWidget {
   final EdgeInsetsGeometry padding;
   final double elevation;
   final double borderRadius;
-final double width;
+  final double width;
   const CustomElevationButton({
     super.key,
-    required this.title,  
-    required this.onPressed, 
+    required this.title,
+    required this.onPressed,
     this.backgroundColor = Colors.white,
-    this.textColor = Colors.black, 
-    this.fontSize = 16.0, 
+    this.textColor = Colors.black,
+    this.fontSize = 16.0,
     this.padding = const EdgeInsets.symmetric(vertical: 14.0, horizontal: 16.0),
-    this.elevation = 0.0, 
+    this.elevation = 0.0,
     this.borderRadius = 50.0,
     this.width = double.infinity,
   });
@@ -127,7 +123,7 @@ final double width;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-       width: width,
+      width: width,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
@@ -149,5 +145,4 @@ final double width;
       ),
     );
   }
-}   
-
+}

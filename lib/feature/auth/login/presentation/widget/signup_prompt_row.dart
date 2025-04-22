@@ -1,5 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../../../core/routes/routes.dart';
 
 class SignupPromptRow extends StatelessWidget {
   final VoidCallback? onSignupTap;
@@ -64,6 +68,10 @@ class SignupPromptRow extends StatelessWidget {
               ),
               children: [
                 TextSpan(
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      context.goNamed(Routes.registerScreen);
+                    },
                   text: "إنشاء حساب",
                   style: TextStyle(
                     color: Color(0xFFFFA500),
