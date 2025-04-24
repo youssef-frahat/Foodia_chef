@@ -20,13 +20,12 @@ class RegisterBodyWidget extends StatefulWidget {
 
 class _RegisterBodyWidgetState extends State<RegisterBodyWidget> {
   final _formKey = GlobalKey<FormState>();
-  static final TextEditingController nameController = TextEditingController();
-  static final TextEditingController phoneController = TextEditingController();
-  static final TextEditingController passwordController =
-      TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
-  static final TextEditingController emailController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
 
   @override
   void dispose() {
@@ -167,12 +166,9 @@ class _RegisterBodyWidgetState extends State<RegisterBodyWidget> {
                 height: 50.h,
                 onTap: () {
                   if (_formKey.currentState?.validate() ?? false) {
-                    context.goNamed(Routes.register2Screen, extra: {
-                      'name': nameController.text,
-                      'email': emailController.text,
-                      'phone': phoneController.text,
-                      'password': passwordController.text,
-                    });
+                    context.goNamed(
+                      Routes.register2Screen,
+                    );
                   }
                 },
                 textColor: Colors.white,

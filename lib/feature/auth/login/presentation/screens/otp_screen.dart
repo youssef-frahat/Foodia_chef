@@ -5,8 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foodia_chef/core/app_config/app_strings.dart';
 import 'package:foodia_chef/core/extensions/space_extension.dart';
 import 'package:foodia_chef/core/widgets/buttons/custom_button.dart';
-import 'package:foodia_chef/feature/auth/login/presentation/cubit/cubit/register_cubit.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/app_config/app_colors.dart';
 
 class OtpScreen extends StatefulWidget {
@@ -19,7 +17,6 @@ class OtpScreen extends StatefulWidget {
 class _OtpScreenState extends State<OtpScreen> {
   final _formKey = GlobalKey<FormState>();
   String _otpCode = '';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,11 +72,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     _otpCode = code;
                   });
                 },
-                onSubmit: (String code) {
-                  context
-                      .read<RegisterCubit>()
-                      .verifyOtp(otpCode: code, phone: 'phone_number');
-                },
+                onSubmit: (String code) {},
               ),
               20.height,
               Row(
@@ -88,11 +81,7 @@ class _OtpScreenState extends State<OtpScreen> {
                   Text(AppStrings.idontresve),
                   5.width,
                   InkWell(
-                    onTap: () {
-                      context
-                          .read<RegisterCubit>()
-                          .sendOtp(phone: 'phone_number');
-                    },
+                    onTap: () {},
                     child: Text(
                       AppStrings.resend,
                       style: TextStyle(
@@ -112,11 +101,7 @@ class _OtpScreenState extends State<OtpScreen> {
                   text: AppStrings.confirm,
                   textColor: Colors.white,
                   backgroundColor: AppColors.buttonColor,
-                  onTap: () {
-                    context
-                        .read<RegisterCubit>()
-                        .verifyOtp(otpCode: _otpCode, phone: 'phone_number');
-                  }),
+                  onTap: () {}),
             ],
           ),
         ),

@@ -7,7 +7,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../feature/auth/login/presentation/screens/login_screen.dart';
 import '../../feature/auth/login/presentation/screens/register_screen.dart';
-import '../../feature/auth/login/presentation/widget/second_register_body.dart';
 import '../../feature/bottom_navigation_bar/custom_button_nav_bar.dart';
 import '../../feature/splash_onbordig/onbording.dart';
 
@@ -56,20 +55,8 @@ class AppRouter {
                 child: const RegisterScreen(),
               ),
             ),
-            GoRoute(
-              path: Routes.register2Screen,
-              name: Routes.register2Screen,
-              builder: (BuildContext context, GoRouterState state) {
-                final Map<String, String> registrationData =
-                    state.extra as Map<String, String>;
-                return SecondPage(
-                  name: registrationData['name']!,
-                  email: registrationData['email']!,
-                  phone: registrationData['phone']!,
-                  password: registrationData['password']!,
-                );
-              },
-            ),
+            
+            
             GoRoute(
               parentNavigatorKey: appNavigatorKey,
               path: Routes.otpScreen,
