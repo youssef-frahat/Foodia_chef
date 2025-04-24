@@ -31,8 +31,9 @@ class AppStrings {
   static const String pleaseEnterValidPhoneNumber =
       'الرجاء ادخال رقم هاتف صحيح';
   static const String passwordNotMatch = 'كلمة المرور غير متطابقة';
- static const String pleaseCheckInternetConnection = 'الرجاء التحقق من اتصالك بالانترنت';
- static const String home = "الرئيسية";
+  static const String pleaseCheckInternetConnection =
+      'الرجاء التحقق من اتصالك بالانترنت';
+  static const String home = "الرئيسية";
   static const String profile = "الملف الشخصي";
   static const String eating = "اكلاتي";
   static const String accpted = "قبول";
@@ -42,13 +43,31 @@ class AppStrings {
   static const String prepared = "تم التحضير";
   static const String inPreparation = "قيد التحضير";
   static const String wallet = "المحفظة";
-    static const String bio = "الوصف";
-        static const String enterBio = "ادخل الوصف";
+  static const String bio = "الوصف";
+  static const String enterBio = "ادخل الوصف";
   static const String pleaseEnterYourBio = "الرجاء ادخال الوصف";
   static const String uploadProfilePicture = "رفع صورة الملف الشخصي";
-  
-
-
+  static const String enterotpcode = "ادخل رمز التحقق";
+  static const String wesendyourcode =
+      "لقد تم ارسال كود مكون من 4 ارقام على رقم الهاتف الخاص بك";
+  static const String idontresve = "لم استلم الكود؟";
+  static const String resend = "اعادة ارسال الكود";
+  static const String pleaseEnterYourVerificationCode =
+      "الرجاء ادخال رمز التحقق";
+  static const String pleaseCheckifotpis4numbers =
+      "الرجاء التحقق من ان الكود مكون من 4 ارقام";
+  static const String confirm = "تاكيد";
+    static const String YourVerificationCodeFaild ="رمز التحقق غير صحيح";
+  static const String YourVerificationCodeSuccess ="تم التحقق من الرمز بنجاح";
+  static const String registrationSuccessful = "تم التسجيل بنجاح";
+  static const String registrationFailed = "فشل التسجيل";
+  static const String otpSent = "تم ارسال الرمز بنجاح";
+  static const String otpVerificationSuccessful = "تم التحقق من الرمز بنجاح";
+  static const String otpVerificationFailed = "فشل التحقق من الرمز";
+  static const String otpSendingFailed = "فشل ارسال الرمز";
+  static const String next = "التالي";
+  static const String skip = "تخطي";
+  static const String genericError = "حدث خطأ غير متوقع";
 
 
 }

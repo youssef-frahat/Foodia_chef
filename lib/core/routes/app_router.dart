@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodia_chef/core/routes/routes.dart';
 import 'package:foodia_chef/core/routes/routing_observer.dart';
 import 'package:foodia_chef/core/routes/screen_withfade_transition.dart';
+import 'package:foodia_chef/feature/auth/login/presentation/screens/otp_screen.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../feature/auth/login/presentation/screens/login_screen.dart';
@@ -56,14 +57,28 @@ class AppRouter {
               ),
             ),
             GoRoute(
-              parentNavigatorKey: appNavigatorKey,
               path: Routes.register2Screen,
               name: Routes.register2Screen,
+              builder: (BuildContext context, GoRouterState state) {
+                final Map<String, String> registrationData =
+                    state.extra as Map<String, String>;
+                return SecondPage(
+                  name: registrationData['name']!,
+                  email: registrationData['email']!,
+                  phone: registrationData['phone']!,
+                  password: registrationData['password']!,
+                );
+              },
+            ),
+            GoRoute(
+              parentNavigatorKey: appNavigatorKey,
+              path: Routes.otpScreen,
+              name: Routes.otpScreen,
               pageBuilder: (context, GoRouterState state) =>
                   screenWithFadeTransition(
                 context: context,
                 state: state,
-                child: const SecondPage(),
+                child: const OtpScreen(),
               ),
             ),
             GoRoute(
@@ -72,6 +87,7 @@ class AppRouter {
                 return BottomNavBar();
               },
             ),
+
             // GoRoute(
             //   parentNavigatorKey: appNavigatorKey,
             //   path: Routes.home,

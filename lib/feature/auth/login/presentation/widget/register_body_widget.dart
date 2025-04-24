@@ -20,20 +20,21 @@ class RegisterBodyWidget extends StatefulWidget {
 
 class _RegisterBodyWidgetState extends State<RegisterBodyWidget> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
+  static final TextEditingController nameController = TextEditingController();
+  static final TextEditingController phoneController = TextEditingController();
+  static final TextEditingController passwordController =
       TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
+  static final TextEditingController emailController = TextEditingController();
 
   @override
   void dispose() {
-    _nameController.dispose();
-    _phoneController.dispose();
-    _passwordController.dispose();
-    _confirmPasswordController.dispose();
-    _emailController.dispose();
+    nameController.dispose();
+    phoneController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    emailController.dispose();
     super.dispose();
   }
 
@@ -61,7 +62,7 @@ class _RegisterBodyWidgetState extends State<RegisterBodyWidget> {
     if (value == null || value.isEmpty) {
       return AppStrings.pleaseEnterYourPassword;
     }
-    if (value != _passwordController.text) {
+    if (value != passwordController.text) {
       return AppStrings.passwordNotMatch;
     }
     return null;
@@ -71,20 +72,19 @@ class _RegisterBodyWidgetState extends State<RegisterBodyWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0, // Remove app bar shadow
-
+        elevation: 0,
         scrolledUnderElevation: 0,
-        automaticallyImplyLeading: true, // Disable default back button
+        automaticallyImplyLeading: true,
         leading: BackButton(
-            color: AppColors.buttonColor, // Set the color of the back button
-            onPressed: () => context.goNamed(Routes.login)),
-
+          color: AppColors.buttonColor,
+          onPressed: () => context.goNamed(Routes.login),
+        ),
         backgroundColor: Colors.transparent,
       ),
       body: Form(
         key: _formKey,
         child: Padding(
-          padding: EdgeInsetsDirectional.symmetric(horizontal: 16.w),
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: ListView(
             children: [
               Center(
@@ -108,7 +108,7 @@ class _RegisterBodyWidgetState extends State<RegisterBodyWidget> {
               40.height,
               CustomTextField(
                 label: AppStrings.userName,
-                controller: _nameController,
+                controller: nameController,
                 maxLines: 1,
                 keyboardType: TextInputType.name,
                 hint: AppStrings.enterUserName,
@@ -122,7 +122,7 @@ class _RegisterBodyWidgetState extends State<RegisterBodyWidget> {
               12.height,
               CustomTextField(
                 label: AppStrings.phone,
-                controller: _phoneController,
+                controller: phoneController,
                 maxLines: 1,
                 keyboardType: TextInputType.phone,
                 hint: AppStrings.enterPhone,
@@ -131,7 +131,7 @@ class _RegisterBodyWidgetState extends State<RegisterBodyWidget> {
               12.height,
               CustomTextField(
                 label: AppStrings.email,
-                controller: _emailController,
+                controller: emailController,
                 maxLines: 1,
                 keyboardType: TextInputType.emailAddress,
                 hint: AppStrings.enterEmail,
@@ -140,7 +140,7 @@ class _RegisterBodyWidgetState extends State<RegisterBodyWidget> {
               12.height,
               PasswordField(
                 label: AppStrings.password,
-                controller: _passwordController,
+                controller: passwordController,
                 hint: AppStrings.enterPassword,
                 validator: (val) {
                   if (val == null || val.isEmpty) {
@@ -155,7 +155,7 @@ class _RegisterBodyWidgetState extends State<RegisterBodyWidget> {
               12.height,
               PasswordField(
                 label: AppStrings.confirmPassword,
-                controller: _confirmPasswordController,
+                controller: confirmPasswordController,
                 hint: AppStrings.enterPassword,
                 validator: _validatePasswordMatch,
               ),
@@ -167,7 +167,12 @@ class _RegisterBodyWidgetState extends State<RegisterBodyWidget> {
                 height: 50.h,
                 onTap: () {
                   if (_formKey.currentState?.validate() ?? false) {
-                    context.goNamed(Routes.register2Screen);
+                    context.goNamed(Routes.register2Screen, extra: {
+                      'name': nameController.text,
+                      'email': emailController.text,
+                      'phone': phoneController.text,
+                      'password': passwordController.text,
+                    });
                   }
                 },
                 textColor: Colors.white,
