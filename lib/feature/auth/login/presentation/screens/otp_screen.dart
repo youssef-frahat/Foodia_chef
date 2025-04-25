@@ -8,7 +8,8 @@ import 'package:foodia_chef/core/widgets/buttons/custom_button.dart';
 import '../../../../../core/app_config/app_colors.dart';
 
 class OtpScreen extends StatefulWidget {
-  const OtpScreen({super.key});
+  const OtpScreen({super.key, required this.phoneNumber});
+  final String phoneNumber;
 
   @override
   State<OtpScreen> createState() => _OtpScreenState();
@@ -16,6 +17,7 @@ class OtpScreen extends StatefulWidget {
 
 class _OtpScreenState extends State<OtpScreen> {
   final _formKey = GlobalKey<FormState>();
+  // ignore: unused_field
   String _otpCode = '';
   @override
   Widget build(BuildContext context) {

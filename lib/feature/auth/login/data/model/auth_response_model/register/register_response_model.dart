@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-import 'data.dart';
+import 'register_data.dart';
+
 
 class RegisterResponseModel extends Equatable {
 	final bool? status;

@@ -1,7 +1,13 @@
 import 'package:get_it/get_it.dart';
+
 import '../../feature/auth/login/data/repo/login_repo.dart';
 import '../../feature/auth/login/data/repo/login_repo_impl.dart';
 import '../../feature/auth/login/presentation/cubit/cubit/login_cubit.dart';
+
+import '../../feature/auth/login/data/repo/register_repo.dart';
+import '../../feature/auth/login/data/repo/register_repo_impl.dart';
+import '../../feature/auth/login/presentation/cubit/cubit/register_cubit.dart';
+
 import '../network/api_services.dart';
 
 final getIt = GetIt.instance;
@@ -20,18 +26,21 @@ void _initExternals() {
 //? Repositories
 void _initRepositories() {
   getIt.registerLazySingleton<LoginRepository>(
-    () => LoginRepositoryImpl(
-      getIt<ApiService>(),
-    ),
+    () => LoginRepositoryImpl(getIt<ApiService>()),
   );
-  // لو عندك Repository لعملية التسجيل، ضيفه هنا كمان
+
+  getIt.registerLazySingleton<RegisterRepo>(
+    () => RegisterRepositoryImpl(getIt<ApiService>()),
+  );
 }
 
 //? Cubits
 void _initCubits() {
   getIt.registerFactory<LoginCubit>(
-    () => LoginCubit(
-      getIt<LoginRepository>(),
-    ),
+    () => LoginCubit(getIt<LoginRepository>()),
+  );
+
+  getIt.registerFactory<RegisterCubit>(
+    () => RegisterCubit(getIt<RegisterRepo>()),
   );
 }

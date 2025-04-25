@@ -5,6 +5,11 @@ class AppUrls {
 
 
   static const String login = '$base/login';
+  static const String register = '$base/register';
+  static const String verifyOtp = '$base/send-otp';
+  static const String resetPassword = '$base/reset-password';
+  static const String resendCode = '$base/resend-code';
+  
 
 
 

@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart';
 
 import 'package:foodia_chef/core/models/exceptions.dart';
 
-import 'package:foodia_chef/feature/auth/login/data/model/auth_response_model/login_response_model.dart';
+import 'package:foodia_chef/feature/auth/login/data/model/auth_response_model/login/login_response_model.dart';
 
 import '../../../../../core/app_config/app_strings.dart';
 import '../../../../../core/app_config/app_urls.dart';

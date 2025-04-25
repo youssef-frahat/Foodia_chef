@@ -1,44 +1,30 @@
+
 import 'package:equatable/equatable.dart';
 
-enum RegisterErrorSource {
-  sendOtp,
-  verifyOtp,
-  register,
-}
+import '../../../data/model/auth_response_model/register/register_response_model.dart';
 
-abstract class RegisterState extends Equatable {
-  @override
-  List<Object?> get props => [];
-}
-
-class RegisterInitial extends RegisterState {}
-
-class RegisterLoading extends RegisterState {}
-
-class RegisterSuccess extends RegisterState {
-  final String message;
-
-  RegisterSuccess({required this.message});
+sealed class RegisterState extends Equatable {
+  const RegisterState();
 
   @override
-  List<Object> get props => [message];
+  List<Object> get props => [];
 }
 
-class RegisterOtpSent extends RegisterState {
-  final String message;
+final class RegisterInitial extends RegisterState {}
 
-  RegisterOtpSent({required this.message});
+final class RegisterLoading extends RegisterState {}
 
+final class RegisterSuccess extends RegisterState {
+  final RegisterResponseModel user;
+  const RegisterSuccess({required this.user});
   @override
-  List<Object> get props => [message];
+  List<Object> get props => [user];
 }
 
-class RegisterError extends RegisterState {
+final class RegisterError extends RegisterState {
   final String error;
-  final RegisterErrorSource source;
-
-  RegisterError({required this.error, required this.source});
+  const RegisterError(this.error);
 
   @override
-  List<Object> get props => [error, source];
+  List<Object> get props => [error];
 }

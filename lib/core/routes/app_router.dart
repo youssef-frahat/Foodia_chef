@@ -55,19 +55,33 @@ class AppRouter {
                 child: const RegisterScreen(),
               ),
             ),
-            
-            
+            // GoRoute(
+            //   parentNavigatorKey: appNavigatorKey,
+            //   path: Routes.register2Screen,
+            //   name: Routes.register2Screen,
+            //   pageBuilder: (context, GoRouterState state) =>
+            //       screenWithFadeTransition(
+            //     context: context,
+            //     state: state,
+            //     child: SecondPage(),
+            //   ),
+            // ),
+
             GoRoute(
               parentNavigatorKey: appNavigatorKey,
               path: Routes.otpScreen,
               name: Routes.otpScreen,
-              pageBuilder: (context, GoRouterState state) =>
-                  screenWithFadeTransition(
-                context: context,
-                state: state,
-                child: const OtpScreen(),
-              ),
+              pageBuilder: (context, GoRouterState state) {
+                final String phoneNumber = state.extra as String;
+
+                return screenWithFadeTransition(
+                  context: context,
+                  state: state,
+                  child: OtpScreen(phoneNumber: phoneNumber),
+                );
+              },
             ),
+
             GoRoute(
               path: Routes.bottomNavBar,
               builder: (context, state) {

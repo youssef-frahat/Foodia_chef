@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:foodia_chef/core/helpers/shared_pref_local_storage.dart';
 
 import '../../../../../../core/models/failures.dart';
-import '../../../data/model/auth_response_model/login_response_model.dart';
+import '../../../data/model/auth_response_model/login/login_response_model.dart';
 import '../../../data/repo/login_repo.dart';
 
 part 'login_state.dart';
