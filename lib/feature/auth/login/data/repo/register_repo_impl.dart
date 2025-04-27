@@ -14,7 +14,7 @@ import '../../../../../core/network/api_services.dart';
 import '../model/auth_response_model/register/register_response_model.dart';
 
 class RegisterRepositoryImpl extends RegisterRepo {
-    ApiService apiService;
+  final ApiService apiService;
 
   RegisterRepositoryImpl(this.apiService);
 
@@ -29,10 +29,12 @@ class RegisterRepositoryImpl extends RegisterRepo {
     required XFile image,
   }) async {
     try {
+      // تحقق من الاتصال بالانترنت
       if (!await ConnectivityHelper.connected) {
         return const Left(NetworkFailure(AppStrings.checkInternetConnection));
       }
 
+      // تجهيز البيانات لإرسالها مع الـ POST
       final formData = FormData.fromMap({
         'phone': phone,
         'password': password,
@@ -53,10 +55,9 @@ class RegisterRepositoryImpl extends RegisterRepo {
 
       log('Register response: $response');
 
-      if (response == null ||
-          response['data'] == null ||
-          response['data']['token'] == null) {
-        return Left(AuthFailure(response['message'] ?? 'Unknown error occurred'));
+      // هنا التعديل المهم:
+      if (response == null || response['status'] != true) {
+        return Left(AuthFailure(response?['message'] ?? 'Unknown error occurred'));
       }
 
       final user = RegisterResponseModel.fromJson(response['data']);
