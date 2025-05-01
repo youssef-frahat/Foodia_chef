@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:foodia_chef/core/routes/routes.dart';
 import 'package:foodia_chef/core/routes/routing_observer.dart';
 import 'package:foodia_chef/core/routes/screen_withfade_transition.dart';
-import 'package:foodia_chef/feature/auth/login/presentation/screens/otp_screen.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../feature/auth/login/presentation/screens/login_screen.dart';
 import '../../feature/auth/login/presentation/screens/register_screen.dart';
+import '../../feature/auth/otp/presentation/screen/otp_screen.dart';
 import '../../feature/bottom_navigation_bar/custom_button_nav_bar.dart';
 import '../../feature/splash_onbordig/onbording.dart';
 
@@ -77,7 +77,9 @@ class AppRouter {
                 return screenWithFadeTransition(
                   context: context,
                   state: state,
-                  child: OtpScreen(phoneNumber: phoneNumber),
+                  child: OtpScreen(
+                    phoneNumber: phoneNumber,
+                  ),
                 );
               },
             ),

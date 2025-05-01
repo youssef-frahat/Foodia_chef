@@ -8,9 +8,9 @@ class RegisterData extends Equatable {
   final int? otp;
   final String? image;
   final String? token;
-  final String? wallet;
-  final int? countSubscribe;
-  final int? totalOrder;
+  final dynamic wallet;
+  final dynamic countSubscribe;
+  final dynamic totalOrder;
 
   const RegisterData({
     this.name,
@@ -26,46 +26,44 @@ class RegisterData extends Equatable {
   });
 
   factory RegisterData.fromJson(Map<String, dynamic> json) => RegisterData(
-    name: json['name'] as String?,
-    phone: json['phone'] as String?,
-    email: json['email'] as String?,
-    bio: json['bio'] as String?,
-    otp: json['otp'] is int ? json['otp'] : int.tryParse(json['otp']?.toString() ?? ''),
-    image: json['image'] as String?,
-    token: json['token'] as String?,
-    wallet: json['wallet']?.toString(),
-    countSubscribe: json['countSubscribe'] is int
-        ? json['countSubscribe']
-        : int.tryParse(json['countSubscribe']?.toString() ?? ''),
-    totalOrder: json['totalOrder'] is int
-        ? json['totalOrder']
-        : int.tryParse(json['totalOrder']?.toString() ?? ''),
-  );
+        name: json['name'] as String?,
+        phone: json['phone'] as String?,
+        email: json['email'] as String?,
+        bio: json['bio'] as String?,
+        otp: json['otp'] is int
+            ? json['otp']
+            : int.tryParse(json['otp']?.toString() ?? ''),
+        image: json['image'] as String?,
+        token: json['token'] as String?,
+        wallet: json['wallet'],
+        countSubscribe: json['countSubscribe'],
+        totalOrder: json['totalOrder'],
+      );
 
   Map<String, dynamic> toJson() => {
-    'name': name,
-    'phone': phone,
-    'email': email,
-    'bio': bio,
-    'otp': otp,
-    'image': image,
-    'token': token,
-    'wallet': wallet,
-    'countSubscribe': countSubscribe,
-    'totalOrder': totalOrder,
-  };
+        'name': name,
+        'phone': phone,
+        'email': email,
+        'bio': bio,
+        'otp': otp,
+        'image': image,
+        'token': token,
+        'wallet': wallet,
+        'countSubscribe': countSubscribe,
+        'totalOrder': totalOrder,
+      };
 
   @override
   List<Object?> get props => [
-    name,
-    phone,
-    email,
-    bio,
-    otp,
-    image,
-    token,
-    wallet,
-    countSubscribe,
-    totalOrder,
-  ];
+        name,
+        phone,
+        email,
+        bio,
+        otp,
+        image,
+        token,
+        wallet,
+        countSubscribe,
+        totalOrder,
+      ];
 }
