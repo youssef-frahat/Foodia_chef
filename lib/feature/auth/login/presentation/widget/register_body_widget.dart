@@ -102,43 +102,34 @@ class _RegisterBodyWidgetState extends State<RegisterBodyWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<RegisterCubit>(),
-      child: BlocConsumer<RegisterCubit, RegisterState>(
-        listener: (context, state) {
-          if (state is RegisterLoading) {
-            // Show loading indicator while the registration is in progress
-            AppMessages.showLoading(context);
-          } else if (state is RegisterSuccess) {
-            // After successful registration, close the loading screen
-            Navigator.of(context).pop();
-
-            // Navigate to the OTP screen
-            context.pushNamed(
-              Routes.otpScreen,
-              extra: phoneController.text
-                  .trim(), // Pass phone number as extra argument
-            );
-          } else if (state is RegisterError) {
-            // Close the loading screen in case of error
-            Navigator.of(context).pop();
-
-            // Show an error message
-            AppMessages.showError(context, state.error);
-          }
-        },
-        builder: (context, state) {
-          return Scaffold(
-            appBar: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              scrolledUnderElevation: 0,
-              leading: BackButton(
-                color: AppColors.buttonColor,
-                onPressed: () => context.pop(),
-              ),
-            ),
-            body: Form(
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        leading: BackButton(
+          color: AppColors.buttonColor,
+          onPressed: () => context.pop(),
+        ),
+      ),
+      body: BlocProvider(
+        create: (context) => getIt<RegisterCubit>(),
+        child: BlocConsumer<RegisterCubit, RegisterState>(
+          listener: (context, state) {
+            if (state is RegisterLoading) {
+              AppMessages.showLoading(context);
+            }
+            if (state is RegisterSuccess) {
+              AppMessages.showSuccess(context,"تم التسجيل بنجاح");
+              context.pushNamed(Routes.otpScreen,
+                  extra:phoneController.text); // Pass the OTP model to the next screen
+            }
+            if (state is RegisterError) {
+              AppMessages.showError(context, state.error);
+            } 
+          },
+          builder: (context, state) {
+            return Form(
               key: _formKey,
               child: ListView(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -268,9 +259,9 @@ class _RegisterBodyWidgetState extends State<RegisterBodyWidget> {
                   20.height,
                 ],
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

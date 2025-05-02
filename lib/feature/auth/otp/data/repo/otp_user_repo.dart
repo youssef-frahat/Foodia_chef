@@ -9,7 +9,7 @@ abstract class OtpUserRepo {
   });
 
   //! Sends an OTP code to the user's phone number.
-  Future<Either<Failure, Unit>> verifyOtp({
+  Future<Either<Failure,Unit >> verifyOtp({
     required String phoneNumber,
     required String otpCode,
   });

@@ -72,13 +72,20 @@ class AppRouter {
               path: Routes.otpScreen,
               name: Routes.otpScreen,
               pageBuilder: (context, GoRouterState state) {
-                final String phoneNumber = state.extra as String;
-
+                final phoneNumber = state.extra;
+                  if (phoneNumber is! String || phoneNumber.isEmpty) {
+                 return screenWithFadeTransition(
+                    context: context,
+                    state: state,
+                    child: Text("Invalid phone number"),
+                  );
+                }
                 return screenWithFadeTransition(
                   context: context,
                   state: state,
                   child: OtpScreen(
                     phoneNumber: phoneNumber,
+                    
                   ),
                 );
               },

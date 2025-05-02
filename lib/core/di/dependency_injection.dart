@@ -1,3 +1,6 @@
+import 'package:foodia_chef/feature/auth/otp/data/repo/otp_user_repo.dart';
+import 'package:foodia_chef/feature/auth/otp/data/repo/otp_user_repo_impl.dart';
+import 'package:foodia_chef/feature/auth/otp/presentation/logic/cubit/otp_user_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../feature/auth/login/data/repo/login_repo.dart';
@@ -32,9 +35,11 @@ void _initRepositories() {
   getIt.registerLazySingleton<RegisterRepo>(
     () => RegisterRepositoryImpl(getIt<ApiService>()),
   );
+   getIt.registerLazySingleton<OtpUserRepo>(
+    () => OtpUserRepoImpl(getIt<ApiService>()),
+  );
 }
 
-//? Cubits
 void _initCubits() {
   getIt.registerFactory<LoginCubit>(
     () => LoginCubit(getIt<LoginRepository>()),
@@ -42,5 +47,8 @@ void _initCubits() {
 
   getIt.registerFactory<RegisterCubit>(
     () => RegisterCubit(getIt<RegisterRepo>()),
+  );
+  getIt.registerFactory<OtpUserCubit>(
+    () => OtpUserCubit(getIt<OtpUserRepo>()),
   );
 }

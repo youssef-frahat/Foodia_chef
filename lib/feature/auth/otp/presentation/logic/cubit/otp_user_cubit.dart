@@ -1,20 +1,22 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../data/repo/otp_user_repo_impl.dart';
+import '../../../data/repo/otp_user_repo.dart'; // استخدم الواجهة وليس التنفيذ
 
 part 'otp_user_state.dart';
 
 class OtpUserCubit extends Cubit<OtpUserState> {
-  final OtpUserRepoImpl otpUserRepoImpl;
-  OtpUserCubit(this.otpUserRepoImpl) : super(OtpUserInitial());
+  final OtpUserRepo otpUserRepo;
 
+  OtpUserCubit(this.otpUserRepo) : super(OtpUserInitial());
 
-   Future<void> validateOtpCode(
-      {required String phoneNumber, required String otpCode}) async {
+  Future<void> validateOtpCode({
+    required String phoneNumber,
+    required String otpCode,
+  }) async {
     emit(ValidateOtpCodeLoading());
     try {
-      final result = await otpUserRepoImpl.verifyOtp(
+      final result = await otpUserRepo.verifyOtp(
         phoneNumber: phoneNumber,
         otpCode: otpCode,
       );
@@ -34,7 +36,7 @@ class OtpUserCubit extends Cubit<OtpUserState> {
   Future<void> sendOtpCode({required String phoneNumber}) async {
     emit(SendOtpCodeLoading());
     try {
-      final result = await otpUserRepoImpl.sendOtp(phoneNumber: phoneNumber);
+      final result = await otpUserRepo.sendOtp(phoneNumber: phoneNumber);
       result.fold(
         (failure) {
           emit(SendOtpCodeError(failure.message));
