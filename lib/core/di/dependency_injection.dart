@@ -11,6 +11,8 @@ import '../../feature/auth/login/data/repo/register_repo.dart';
 import '../../feature/auth/login/data/repo/register_repo_impl.dart';
 import '../../feature/auth/login/presentation/cubit/cubit/register_cubit.dart';
 
+import '../../feature/profile/data/repo/get_user_profile_repo_impl.dart';
+import '../../feature/profile/presentation/logic/cubit/user_profile_cubit.dart';
 import '../network/api_services.dart';
 
 final getIt = GetIt.instance;
@@ -35,8 +37,11 @@ void _initRepositories() {
   getIt.registerLazySingleton<RegisterRepo>(
     () => RegisterRepositoryImpl(getIt<ApiService>()),
   );
-   getIt.registerLazySingleton<OtpUserRepo>(
+  getIt.registerLazySingleton<OtpUserRepo>(
     () => OtpUserRepoImpl(getIt<ApiService>()),
+  );
+   getIt.registerLazySingleton<GetUserProfileRepoImpl>(
+    () => GetUserProfileRepoImpl(getIt()),
   );
 }
 
@@ -48,7 +53,6 @@ void _initCubits() {
   getIt.registerFactory<RegisterCubit>(
     () => RegisterCubit(getIt<RegisterRepo>()),
   );
-  getIt.registerFactory<OtpUserCubit>(
-    () => OtpUserCubit(getIt<OtpUserRepo>()),
-  );
+  getIt.registerFactory<OtpUserCubit>(() => OtpUserCubit(getIt()));
+  getIt.registerFactory<UserProfileCubit>(() => UserProfileCubit(getIt()));
 }

@@ -38,7 +38,7 @@ class _OtpScreenState extends State<OtpScreen> {
 
   void _startTimer() {
     _timer?.cancel();
-    DateTime date = DateTime.now().add(const Duration(seconds: 15));
+    DateTime date = DateTime.now().add(const Duration(seconds: 9));
     _duration = date.difference(DateTime.now());
     _timer = Timer.periodic(const Duration(milliseconds: 300), (_) {
       setState(() {
@@ -72,13 +72,11 @@ class _OtpScreenState extends State<OtpScreen> {
               AppMessages.showLoading(context);
             } else if (state is ValidateOtpCodeSuccess) {
               context.pop(); // Close loading
-              AppMessages.showSuccess(
-                  context, AppStrings.otpVerificationSuccessful);
+              AppMessages.showSuccess(context, AppStrings.verificationSuccess);
               context.pushNamed(Routes.bottomNavBar);
             } else if (state is ValidateOtpCodeError) {
               context.pop(); // Close loading
-              AppMessages.showError(
-                  context, AppStrings.YourVerificationCodeFaild);
+              AppMessages.showError(context, AppStrings.verificationFailed);
             } else if (state is SendOtpCodeSuccess) {
               context.pop(); // Close loading
               AppMessages.showSuccess(context, "تم إرسال الكود مرة أخرى بنجاح");
@@ -118,7 +116,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                     alignment: Alignment.center,
                                     child: Container(
                                       width: 543.w,
-                                      height: 543..h,
+                                      height: 543.h,
                                       decoration: BoxDecoration(
                                         color: Color(0x33F8A435),
                                         shape: BoxShape.circle,
@@ -240,17 +238,21 @@ class _OtpScreenState extends State<OtpScreen> {
                             10.height,
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                const Text("لم يصلك كود تحقق؟ ",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontFamily: 'Changa',
-                                    )),
+                                const Text(
+                                  "لم يصلك كود تحقق؟ ",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontFamily: 'Changa',
+                                  ),
+                                ),
                                 if (_duration != null &&
                                     _duration!.inSeconds > 0)
                                   Text(
                                     "إرسال مرة أخرى خلال ${_duration!.inSeconds} ثانية",
                                     style: const TextStyle(
+                                      fontSize: 12,
                                       color: Colors.grey,
                                       fontFamily: 'Changa',
                                     ),

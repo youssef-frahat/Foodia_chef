@@ -1,4 +1,6 @@
 class AppStrings {
+  static const String name = 'الاسم';
+
   static const String login = 'تسجيل الدخول';
   static const String login1 = "الدخول";
   static const String phone = 'رقم الهاتف';
@@ -7,6 +9,8 @@ class AppStrings {
   static const String enterEmail = 'ادخل البريد الالكتروني';
   static const String pleaseEnterYourPhone = 'الرجاء ادخال رقم الهاتف';
   static const String password = 'كلمة المرور';
+  static const String newpassword = 'كلمة المرور الجديده';
+
   static const String enterPassword = 'ادخل كلمة المرور';
   static const String pleaseEnterYourPassword = 'الرجاء ادخال كلمة المرور';
   static const String rememberMe = 'تذكرني';
@@ -19,6 +23,8 @@ class AppStrings {
   static const String userName = 'اسم المستخدم';
   static const String enterUserName = 'ادخل اسم المستخدم';
   static const String pleaseEnterYourUserName = 'الرجاء ادخال اسم المستخدم';
+  static const String pleaseEnterYourName = 'الرجاء ادخال الاسم';
+
   static const String pleaseEnterYourEmail = 'الرجاء ادخال البريد الالكتروني';
   static const String confirmPassword = 'تاكيد كلمة المرور';
   static const String enterConfirmationCode = 'ادخل رمز التحقق';
@@ -57,8 +63,8 @@ class AppStrings {
   static const String pleaseCheckifotpis4numbers =
       "الرجاء التحقق من ان الكود مكون من 4 ارقام";
   static const String confirm = "تاكيد";
-    static const String YourVerificationCodeFaild ="رمز التحقق غير صحيح";
-  static const String YourVerificationCodeSuccess ="تم التحقق من الرمز بنجاح";
+  static const String YourVerificationCodeFaild = "رمز التحقق غير صحيح";
+  static const String YourVerificationCodeSuccess = "تم التحقق من الرمز بنجاح";
   static const String registrationSuccessful = "تم التسجيل بنجاح";
   static const String registrationFailed = "فشل التسجيل";
   static const String otpSent = "تم ارسال الرمز بنجاح";
@@ -68,6 +74,6 @@ class AppStrings {
   static const String next = "التالي";
   static const String skip = "تخطي";
   static const String genericError = "حدث خطأ غير متوقع";
-
-
+  static const String editProfileSuccess = "تم تعديل البيانات بنجاح ";
+  static const String logoutSuccess = "تم تسجيل الخروج بنجاح";
 }

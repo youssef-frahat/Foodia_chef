@@ -97,6 +97,7 @@ class AppRouter {
                 return BottomNavBar();
               },
             ),
+            
 
             // GoRoute(
             //   parentNavigatorKey: appNavigatorKey,

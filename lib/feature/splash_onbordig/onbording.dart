@@ -70,7 +70,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     ),
   ];
 
-  void _goToLogin() => context.goNamed(Routes.otpScreen, extra: "01127244780");
+  void _goToLogin() => context.goNamed(Routes.otpScreen, extra: "01212305840");
 
   @override
   Widget build(BuildContext context) {

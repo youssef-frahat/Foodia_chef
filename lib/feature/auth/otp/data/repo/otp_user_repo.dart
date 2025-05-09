@@ -1,15 +1,15 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../../core/models/failures.dart';
+import '../model/otp_response_model.dart';
 
 abstract class OtpUserRepo {
-
-  Future<Either<Failure, Unit>> sendOtp({
+  Future<Either<Failure, OtpResponseModel>> sendOtp({
     required String phoneNumber,
   });
 
   //! Sends an OTP code to the user's phone number.
-  Future<Either<Failure,Unit >> verifyOtp({
+  Future<Either<Failure, OtpResponseModel>> verifyOtp({
     required String phoneNumber,
     required String otpCode,
   });

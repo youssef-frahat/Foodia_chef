@@ -8,6 +8,11 @@ class AppUrls {
   static const String register = '$base/register';
   static const String verify = '$base/verify-otp';
   static const String resendcode = '$base/resend-code';  
+    static const String profile = '$base/profile';  
+    static const String logout = '$base/logout';
+        static const String editProfile = '$base/edit-Profile';
+
+
 
 
 
