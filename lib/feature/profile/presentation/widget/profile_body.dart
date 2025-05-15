@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:foodia_app/core/di/dependency_injection.dart';
+import 'package:foodia_chef/core/extensions/space_extension.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/app_config/app_strings.dart';
-import '../../../../core/app_config/messages.dart';
-import '../../../../core/extensions/spacing.dart';
-import '../../../../core/routing/app_routes.dart';
+import '../../../../core/di/dependency_injection.dart';
+import '../../../../core/helpers/messages.dart';
+import '../../../../core/routes/routes.dart';
 import '../logic/cubit/user_profile_cubit.dart';
 import 'profile_field.dart';
 
@@ -26,7 +26,7 @@ class ProfileBody extends StatelessWidget {
           AppMessages.showError(context, state.error);
         } else if (state is LogoutSuccess) {
           AppMessages.showSuccess(context, AppStrings.logoutSuccess);
-          context.go(AppRoutes.login);
+          context.go(Routes.login);
         }
       },
       builder: (context, state) {
@@ -45,7 +45,7 @@ class ProfileBody extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      verticalSpace(25),
+                      25.height,
                       CircleAvatar(
                         radius: 60.r,
                         backgroundImage: NetworkImage(
@@ -56,7 +56,7 @@ class ProfileBody extends StatelessWidget {
                               : "https://imgs.search.brave.com/CbGx149KMAUXiJtL17989JkvB2aupjBKAvcBtUva0Yc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzEyLzM1Lzc3LzY0/LzM2MF9GXzEyMzU3/NzY0NDFfakR5RHRZ/amNxdnhSV2RySnBv/aGp4b1YwRGRmdTVY/YWsuanBn",
                         ),
                       ),
-                      verticalSpace(12),
+                      12.height,
                       Text(
                         userProfile.name ?? 'اسم غير متوفر',
                         style: TextStyle(
@@ -65,7 +65,7 @@ class ProfileBody extends StatelessWidget {
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      verticalSpace(4),
+                      4.height,
                       Text(
                         userProfile.email ?? 'البريد الإلكتروني غير متوفر',
                         style: TextStyle(fontSize: 14.sp, color: Colors.grey),
@@ -79,7 +79,7 @@ class ProfileBody extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () async {
                         final result = await context.pushNamed(
-                          AppRoutes.editProfileScreen,
+                          Routes.editProfileScreen,
                           extra: {
                             'name': userProfile.name ?? '',
                             'email': userProfile.email ?? '',
@@ -108,7 +108,7 @@ class ProfileBody extends StatelessWidget {
                   ),
                 ],
               ),
-              verticalSpace(30),
+              30.height,
               ProfileField(
                 title: 'الاسم:',
                 value: userProfile.name ?? 'اسم غير متوفر',
@@ -121,8 +121,7 @@ class ProfileBody extends StatelessWidget {
                 title: 'البريد الالكتروني:',
                 value: userProfile.email ?? 'البريد الإلكتروني غير متوفر',
               ),
-
-              verticalSpace(60),
+              60.height,
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40.w),
                 child: ElevatedButton(
@@ -152,7 +151,7 @@ class ProfileBody extends StatelessWidget {
                   ),
                 ),
               ),
-              verticalSpace(20),
+              20.height,
             ],
           );
         } else if (state is LogoutLoading ||

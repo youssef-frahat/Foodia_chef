@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:foodia_app/core/app_config/app_strings.dart';
 
+import '../../../../core/app_config/app_strings.dart';
 import '../../../../core/app_config/font_styles.dart';
 import '../../../../core/di/dependency_injection.dart';
 import '../logic/cubit/user_profile_cubit.dart';

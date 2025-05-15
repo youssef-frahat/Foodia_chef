@@ -1,14 +1,15 @@
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
-
-import 'package:foodia_app/core/errors/failures.dart';
-import 'package:foodia_app/core/networking/api/api_services.dart';
+import 'package:foodia_chef/core/app_config/app_urls.dart';
 
 import '../../../../../core/app_config/app_strings.dart';
-import '../../../../../core/errors/exceptions.dart';
+
 import '../../../../../core/helpers/connectivity_helper.dart';
-import '../../../../../core/networking/api/end_points.dart';
+
+import '../../../../../core/models/exceptions.dart';
+import '../../../../../core/models/failures.dart';
+import '../../../../../core/network/api_services.dart';
 import '../model/otp_response_model.dart';
 import 'otp_user_repo.dart';
 
@@ -27,7 +28,7 @@ class OtpUserRepoImpl implements OtpUserRepo {
       }
 
       final response = await apiService.post(
-        EndPoints.verifyOtp,
+        AppUrls.verify,
         data: {'phone': phoneNumber, 'otp': otpCode},
       );
       log('OTP Verification Response: $response');
@@ -36,7 +37,7 @@ class OtpUserRepoImpl implements OtpUserRepo {
         return Right(OtpResponseModel.fromJson(response));
       } else {
         return Left(
-          ServerFailure(response['message'] ?? AppStrings.unexpectedError),
+          ServerFailure(response['message'] ?? AppStrings.genericError),
         );
       }
     } on NetworkException catch (e) {
@@ -45,7 +46,7 @@ class OtpUserRepoImpl implements OtpUserRepo {
       return Left(ServerFailure(e.message));
     } catch (e) {
       log('Unexpected error in verifyOtp: $e');
-      return Left(ServerFailure(AppStrings.unexpectedError));
+      return Left(ServerFailure(AppStrings.genericError));
     }
   }
 
@@ -59,7 +60,7 @@ class OtpUserRepoImpl implements OtpUserRepo {
       }
 
       final response = await apiService.post(
-        EndPoints.resend,
+        AppUrls.resendcode,
         data: {'phone': phoneNumber},
       );
 
@@ -68,7 +69,7 @@ class OtpUserRepoImpl implements OtpUserRepo {
         return Right(OtpResponseModel.fromJson(response));
       } else {
         return Left(
-          ServerFailure(response['error'] ?? AppStrings.unexpectedError),
+          ServerFailure(response['error'] ?? AppStrings.genericError),
         );
       }
     } on NetworkException catch (e) {
@@ -76,7 +77,7 @@ class OtpUserRepoImpl implements OtpUserRepo {
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
     } catch (e) {
-      return Left(ServerFailure(AppStrings.unexpectedError));
+      return Left(ServerFailure(AppStrings.genericError));
     }
   }
 }

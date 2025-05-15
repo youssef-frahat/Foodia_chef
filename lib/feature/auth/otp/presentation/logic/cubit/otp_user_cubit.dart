@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../../core/models/failures.dart';
 import '../../../data/repo/otp_user_repo_impl.dart';
 
 part 'otp_user_state.dart';
@@ -22,13 +21,15 @@ class OtpUserCubit extends Cubit<OtpUserState> {
       );
       result.fold(
         (failure) {
-          final errorMessage = (failure is Failure && failure.message.trim().isNotEmpty)
+          final errorMessage = failure.message.trim().isNotEmpty
               ? failure.message
               : 'حدث خطأ غير متوقع';
           emit(ValidateOtpCodeError(errorMessage));
         },
         (_) {
           emit(ValidateOtpCodeSuccess());
+          // Optional: Reset state
+          // Future.delayed(Duration.zero, () => emit(OtpUserInitial()));
         },
       );
     } catch (e) {
@@ -43,13 +44,15 @@ class OtpUserCubit extends Cubit<OtpUserState> {
       final result = await otpUserRepoImpl.sendOtp(phoneNumber: phoneNumber);
       result.fold(
         (failure) {
-          final errorMessage = (failure is Failure && failure.message.trim().isNotEmpty)
+          final errorMessage = failure.message.trim().isNotEmpty
               ? failure.message
               : 'حدث خطأ غير متوقع';
           emit(SendOtpCodeError(errorMessage));
         },
         (_) {
           emit(SendOtpCodeSuccess());
+          // Optional: Reset state
+          // Future.delayed(Duration.zero, () => emit(OtpUserInitial()));
         },
       );
     } catch (e) {

@@ -30,11 +30,11 @@ class CustomPinput extends StatelessWidget {
           height: 74.h,
           width: 74.w,
           decoration: BoxDecoration(
-            border: Border.all(color: AppColors.primarycolor),
-            color: AppColors.secoundrycolor,
+            border: Border.all(color: AppColors.primaryColor),
+            color: AppColors.secondaryColor,
             borderRadius: BorderRadius.circular(8).r,
           ),
-          textStyle: FontStyles.body15W400.copyWith(
+          textStyle: FontStyles.body14W500.copyWith(
             fontSize: 32.sp,
             fontWeight: FontWeight.w600,
           ),
@@ -43,19 +43,19 @@ class CustomPinput extends StatelessWidget {
           height: 74.h,
           width: 74.w,
           decoration: BoxDecoration(
-            border: Border.all(color: AppColors.primarycolor),
-            color: AppColors.primarycolor,
+            border: Border.all(color: AppColors.primaryColor),
+            color: AppColors.primaryColor,
             borderRadius: BorderRadius.circular(8).r,
           ),
           textStyle: TextStyle(
-            color: AppColors.secoundrycolor,
+            color: AppColors.secondaryColor,
             fontSize: 32.sp,
             fontWeight: FontWeight.w600,
           ),
         ),
         preFilledWidget: Text(
           '0',
-          style: TextStyle(color: AppColors.primarycolor, fontSize: 32.sp),
+          style: TextStyle(color: AppColors.primaryColor, fontSize: 32.sp),
         ),
         keyboardType: const TextInputType.numberWithOptions(decimal: true),
       ),

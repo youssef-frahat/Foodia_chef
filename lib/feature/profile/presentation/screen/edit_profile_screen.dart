@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodia_chef/core/extensions/space_extension.dart';
+import 'package:foodia_chef/core/widgets/buttons/custom_button.dart';
 import 'package:foodia_chef/core/widgets/text_form_field/custom_text_form_field.dart';
 import 'package:go_router/go_router.dart';
 
@@ -194,7 +195,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       20.height,
                       CustomTextField(
                         hint: AppStrings.passwordNow,
-                        isPassword: true,
+                        obscure: true,
                         controller: _currentPasswordController,
                         validator: (value) {
                           if (value != null &&
@@ -205,10 +206,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           return null;
                         },
                       ),
-                      verticalSpace(20),
-                      MyTextFormField(
-                        hintText: AppStrings.newPassword,
-                        isPassword: true,
+                      20.height,
+                      CustomTextField(
+                        hint: AppStrings.newPassword,
+                        obscure: true,
                         controller: _newPasswordController,
                         validator: (value) {
                           if (value != null &&
@@ -219,10 +220,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           return null;
                         },
                       ),
-                      verticalSpace(20),
-                      MyTextFormField(
-                        hintText: AppStrings.confirmPassword,
-                        isPassword: true,
+                      20.height,
+                      CustomTextField(
+                        hint: AppStrings.confirmPassword,
+                        obscure: true,
                         controller: _confirmPasswordController,
                         validator: (value) {
                           if (value != null &&
@@ -233,14 +234,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           return null;
                         },
                       ),
-                      verticalSpace(80),
-                      Primarybutton(
-                        buttontext: 'حفظ',
-                        buttoncolor: AppColors.primarycolor,
-                        hight: 48.h,
-                        borderrediuse: 50.r,
-                        textcolor: Colors.white,
-                        onpress: () {
+                      80.height,
+                      CustomButton(
+                        text: 'حفظ',
+                        backgroundColor: AppColors.primaryColor,
+                        height: 48.h,
+                        radius: Radius.circular(50.r),
+                        textColor: Colors.white,
+                        onTap: () {
                           if (_formKey.currentState?.validate() ?? false) {
                             context
                                 .read<UserProfileCubit>()

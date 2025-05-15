@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodia_chef/core/extensions/space_extension.dart';
+import 'package:foodia_chef/core/widgets/buttons/custom_button.dart';
 import 'package:foodia_chef/core/widgets/text_form_field/custom_text_form_field.dart';
 
 import '../../../../../core/app_config/app_colors.dart';
@@ -42,13 +43,12 @@ class ForgotpasswordScreen extends StatelessWidget {
                 },
               ),
               80.height,
-              Primarybutton(
-                buttontext: AppStrings.sendCode,
-                buttoncolor: AppColors.primarycolor,
-                hight: 48.h,
-                borderrediuse: 50.r,
-                textcolor: Colors.white,
-                onpress: () {},
+              CustomButton(
+                text: AppStrings.sendCode,
+                backgroundColor: AppColors.primaryColor,
+                height: 48.h,
+                textColor: Colors.white,
+                onTap: () {},
               ),
             ],
           ),
