@@ -1,8 +1,7 @@
 import 'dart:io';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-
 
 class CustomUploadImage extends StatelessWidget {
   final File? selectedImage;
@@ -102,7 +101,7 @@ class CustomUploadImage extends StatelessWidget {
     if (path.startsWith('http')) {
       return path;
     } else {
-      return 'https://mangamediaa.com/house-food/public/chef/storage/uploads/images/users/$path';
+      return 'https://mangamediaa.com/house-food/public/storage/uploads/images/users/$path';
     }
   }
 }

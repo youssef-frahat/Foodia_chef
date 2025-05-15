@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:foodia_chef/core/widgets/buttons/back_button.dart';
 
 class AppBarEditProfile extends StatelessWidget {
   const AppBarEditProfile({super.key});
@@ -19,8 +18,7 @@ class AppBarEditProfile extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-
-        CustomBackButton(
+        BackButton(
           onPressed: () {
             Navigator.pop(context);
           },

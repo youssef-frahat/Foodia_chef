@@ -1,5 +1,6 @@
 class AppStrings {
   static const String name = 'الاسم';
+  static const String baseUrl = "https://mangamediaa.com/house-food/public/";
 
   static const String login = 'تسجيل الدخول';
   static const String login1 = "الدخول";
@@ -76,4 +77,16 @@ class AppStrings {
   static const String genericError = "حدث خطأ غير متوقع";
   static const String editProfileSuccess = "تم تعديل البيانات بنجاح ";
   static const String logoutSuccess = "تم تسجيل الخروج بنجاح";
+  static const String sendCode = "ارسال الرمز";
+  static const String otpVerified = "تم التحقق من الرمز بنجاح";
+  static const String codeIsInvalid = " الرمز غير صحيح";
+  static const String forgotPasswordtex = "إعادة تعيين كلمة السر";
+  static const String forgotPasswordBody =
+      "ادخل رقم الهاتف المرتبط بحسابك وسنرسل اليك رمز \n";
+  static const String passwordNow = "كلمة المرور الحالية";
+  static const String newPassword = "كلمة المرور الجديدة";
+  static const String newPasswordConfirmation = "تاكيد كلمة المرور الجديدة";
+  static const String passwordChanged = "تم تغيير كلمة المرور بنجاح";
+  static const String passwordChangedFailed = "فشل تغيير كلمة المرور";
+  static const String passwordChangedSuccess = "تم تغيير كلمة المرور بنجاح";
 }

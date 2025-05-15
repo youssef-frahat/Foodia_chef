@@ -1,19 +1,19 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodia_chef/core/extensions/space_extension.dart';
-import 'package:foodia_chef/core/widgets/buttons/custom_button.dart';
+import 'package:foodia_chef/core/widgets/text_form_field/custom_text_form_field.dart';
 import 'package:go_router/go_router.dart';
+
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../core/app_config/app_colors.dart';
 import '../../../../core/app_config/app_strings.dart';
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/helpers/messages.dart';
-import '../../../../core/routes/routes.dart';
-import '../../../../core/widgets/text_form_field/my_text_form_faield.dart';
 import '../logic/cubit/user_profile_cubit.dart';
 import '../widget/app_bar_edit.dart';
 import '../widget/custome_upload_image.dart';
@@ -85,18 +85,20 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<UserProfileCubit>(),
-      child: Scaffold(
-        body: BlocConsumer<UserProfileCubit, UserProfileState>(
+    return Scaffold(
+      body: BlocProvider.value(
+        value: getIt<UserProfileCubit>(),
+        child: BlocConsumer<UserProfileCubit, UserProfileState>(
           listener: (context, state) {
             if (state is EditeUserProfileError) {
+              Navigator.of(context, rootNavigator: true).pop();
               AppMessages.showError(context, state.error);
             }
             if (state is EditeUserProfileSuccess) {
+              Navigator.of(context, rootNavigator: true).pop();
+              context.read<UserProfileCubit>().getUserProfile();
               AppMessages.showSuccess(context, AppStrings.editProfileSuccess);
-
-              context.go(Routes.bottomNavBar);
+              context.pop();
             }
             if (state is EditeUserProfileLoading) {
               AppMessages.showLoading(context);
@@ -113,48 +115,44 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       const AppBarEditProfile(),
                       25.height,
                       CustomUploadImage(
-                        selectedImage:
-                            selectedImage == null
-                                ? (widget.image != null &&
-                                        widget.image!.isNotEmpty
-                                    ? File(
-                                      widget.image!,
-                                    ) // هنا نستخدم الصورة التي تم إرسالها عبر extra
-                                    : null)
-                                : File(selectedImage!.path),
+                        selectedImage: selectedImage == null
+                            ? (widget.image != null && widget.image!.isNotEmpty
+                                ? File(
+                                    widget.image!,
+                                  ) // هنا نستخدم الصورة التي تم إرسالها عبر extra
+                                : null)
+                            : File(selectedImage!.path),
                         networkImage: widget.image,
                         onTap: () {
                           showModalBottomSheet(
                             context: context,
-                            builder:
-                                (context) => Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    ListTile(
-                                      leading: const Icon(Icons.camera),
-                                      title: const Text('الكاميرا'),
-                                      onTap: () {
-                                        _pickImage(ImageSource.camera);
-                                        Navigator.pop(context);
-                                      },
-                                    ),
-                                    ListTile(
-                                      leading: const Icon(Icons.image),
-                                      title: const Text('المعرض'),
-                                      onTap: () {
-                                        _pickImage(ImageSource.gallery);
-                                        Navigator.pop(context);
-                                      },
-                                    ),
-                                  ],
+                            builder: (context) => Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                ListTile(
+                                  leading: const Icon(Icons.camera),
+                                  title: const Text('الكاميرا'),
+                                  onTap: () {
+                                    _pickImage(ImageSource.camera);
+                                    Navigator.pop(context);
+                                  },
                                 ),
+                                ListTile(
+                                  leading: const Icon(Icons.image),
+                                  title: const Text('المعرض'),
+                                  onTap: () {
+                                    _pickImage(ImageSource.gallery);
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ],
+                            ),
                           );
                         },
                       ),
-
-                          30.height,            
-                        MyTextFormField(
-                        hintText: AppStrings.name,
+                      30.height,
+                      CustomTextField(
+                        hint: AppStrings.name,
                         controller: _nameController,
                         validator: (value) {
                           if (value == null || value.trim().isEmpty) {
@@ -164,8 +162,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         },
                       ),
                       20.height,
-                      MyTextFormField(
-                        hintText: AppStrings.phone,
+                      CustomTextField(
+                        hint: AppStrings.phone,
                         keyboardType: TextInputType.phone,
                         controller: _phoneController,
                         validator: (value) {
@@ -179,8 +177,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         },
                       ),
                       20.height,
-                      MyTextFormField(
-                        hintText: AppStrings.email,
+                      CustomTextField(
+                        hint: AppStrings.email,
                         keyboardType: TextInputType.emailAddress,
                         controller: _emailController,
                         validator: (value) {
@@ -194,8 +192,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         },
                       ),
                       20.height,
-                      MyTextFormField(
-                        hintText: AppStrings.password,
+                      CustomTextField(
+                        hint: AppStrings.passwordNow,
                         isPassword: true,
                         controller: _currentPasswordController,
                         validator: (value) {
@@ -207,9 +205,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           return null;
                         },
                       ),
-                      20.height,
+                      verticalSpace(20),
                       MyTextFormField(
-                        hintText: AppStrings.newpassword,
+                        hintText: AppStrings.newPassword,
                         isPassword: true,
                         controller: _newPasswordController,
                         validator: (value) {
@@ -221,7 +219,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           return null;
                         },
                       ),
-                      20.height,
+                      verticalSpace(20),
                       MyTextFormField(
                         hintText: AppStrings.confirmPassword,
                         isPassword: true,
@@ -235,26 +233,31 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           return null;
                         },
                       ),
-                      180.height,
-                      CustomButton(
-                        text: 'حفظ',
-                        backgroundColor: AppColors.borderColor,
-                        height: 48.h,
-                        
-                        textColor: Colors.white,
-                        onTap: () {
+                      verticalSpace(80),
+                      Primarybutton(
+                        buttontext: 'حفظ',
+                        buttoncolor: AppColors.primarycolor,
+                        hight: 48.h,
+                        borderrediuse: 50.r,
+                        textcolor: Colors.white,
+                        onpress: () {
                           if (_formKey.currentState?.validate() ?? false) {
-                            context.read<UserProfileCubit>().updateUserProfile(
-                              name: _nameController.text.trim(),
-                              phone: _phoneController.text.trim(),
-                              email: _emailController.text.trim(),
-                              currentPassword:
-                                  _currentPasswordController.text.trim(),
-                              password: _newPasswordController.text.trim(),
-                              passwordConfirmation:
-                                  _confirmPasswordController.text.trim(),
-                              image: selectedImage,
-                            );
+                            context
+                                .read<UserProfileCubit>()
+                                .updateUserProfile(
+                                  name: _nameController.text.trim(),
+                                  phone: _phoneController.text.trim(),
+                                  email: _emailController.text.trim(),
+                                  currentPassword:
+                                      _currentPasswordController.text.trim(),
+                                  password: _newPasswordController.text.trim(),
+                                  passwordConfirmation:
+                                      _confirmPasswordController.text.trim(),
+                                  image: selectedImage,
+                                )
+                                .then((_) {
+                              Navigator.pop(context, true);
+                            });
                           }
                         },
                       ),
@@ -278,6 +281,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     });
 
     String imagePath = selectedImage!.path.split('/').last;
-    print('Selected image path: $imagePath');
+    log('Selected image path: $imagePath');
   }
 }

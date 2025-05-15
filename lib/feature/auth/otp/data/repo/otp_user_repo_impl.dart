@@ -1,14 +1,14 @@
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
-import 'package:foodia_chef/core/app_config/app_urls.dart';
 
+import 'package:foodia_app/core/errors/failures.dart';
+import 'package:foodia_app/core/networking/api/api_services.dart';
 
 import '../../../../../core/app_config/app_strings.dart';
+import '../../../../../core/errors/exceptions.dart';
 import '../../../../../core/helpers/connectivity_helper.dart';
-import '../../../../../core/models/exceptions.dart';
-import '../../../../../core/models/failures.dart';
-import '../../../../../core/network/api_services.dart';
+import '../../../../../core/networking/api/end_points.dart';
 import '../model/otp_response_model.dart';
 import 'otp_user_repo.dart';
 
@@ -16,7 +16,6 @@ class OtpUserRepoImpl implements OtpUserRepo {
   final ApiService apiService;
 
   OtpUserRepoImpl(this.apiService);
-  @override
   @override
   Future<Either<Failure, OtpResponseModel>> verifyOtp({
     required String phoneNumber,
@@ -28,17 +27,25 @@ class OtpUserRepoImpl implements OtpUserRepo {
       }
 
       final response = await apiService.post(
-        AppUrls.verify,
+        EndPoints.verifyOtp,
         data: {'phone': phoneNumber, 'otp': otpCode},
       );
       log('OTP Verification Response: $response');
-      return Right(OtpResponseModel.fromJson(response));
+
+      if (response['status'] == true) {
+        return Right(OtpResponseModel.fromJson(response));
+      } else {
+        return Left(
+          ServerFailure(response['message'] ?? AppStrings.unexpectedError),
+        );
+      }
     } on NetworkException catch (e) {
       return Left(NetworkFailure(e.message));
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
     } catch (e) {
-      return Left(ServerFailure(AppStrings.genericError));
+      log('Unexpected error in verifyOtp: $e');
+      return Left(ServerFailure(AppStrings.unexpectedError));
     }
   }
 
@@ -52,16 +59,16 @@ class OtpUserRepoImpl implements OtpUserRepo {
       }
 
       final response = await apiService.post(
-        AppUrls.resendcode,
+        EndPoints.resend,
         data: {'phone': phoneNumber},
       );
 
-      if (response['status'] == 'success' && response['message'] != null) {
+      if (response['status'] == true && response['message'] != null) {
         log('OTP Sent Successfully: ${response['message']}');
         return Right(OtpResponseModel.fromJson(response));
       } else {
         return Left(
-          ServerFailure(response['error'] ?? AppStrings.genericError),
+          ServerFailure(response['error'] ?? AppStrings.unexpectedError),
         );
       }
     } on NetworkException catch (e) {
@@ -69,7 +76,7 @@ class OtpUserRepoImpl implements OtpUserRepo {
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
     } catch (e) {
-      return Left(ServerFailure(AppStrings.genericError));
+      return Left(ServerFailure(AppStrings.unexpectedError));
     }
   }
 }

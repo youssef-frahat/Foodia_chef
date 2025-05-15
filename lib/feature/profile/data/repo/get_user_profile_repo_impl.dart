@@ -2,20 +2,20 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:foodia_chef/core/app_config/app_urls.dart';
 
+import 'package:foodia_app/core/errors/failures.dart';
+import 'package:foodia_app/features/profile/data/model/edit_user_profile_model/edit_user_profile_model.dart';
 
+import 'package:foodia_app/features/profile/data/model/get_user_profile_model/get_user_profile_model.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../core/app_config/app_strings.dart';
 import '../../../../core/app_config/prefs_keys.dart';
+import '../../../../core/errors/exceptions.dart';
 import '../../../../core/helpers/connectivity_helper.dart';
 import '../../../../core/helpers/secure_local_storage.dart';
-import '../../../../core/models/exceptions.dart';
-import '../../../../core/models/failures.dart';
-import '../../../../core/network/api_services.dart';
-import '../model/edit_user_profile_model/edit_user_profile_model.dart';
-import '../model/get_user_profile_model/get_user_profile_model.dart';
+import '../../../../core/networking/api/api_services.dart';
+import '../../../../core/networking/api/end_points.dart';
 import 'get_user_profile_repo.dart';
 
 class GetUserProfileRepoImpl implements GetUserProfileRepo {
@@ -30,7 +30,7 @@ class GetUserProfileRepoImpl implements GetUserProfileRepo {
         return const Left(NetworkFailure(AppStrings.checkInternetConnection));
       }
 
-      final response = await apiService.get(AppUrls.profile);
+      final response = await apiService.get(EndPoints.profile);
       log('Get user Profile response: $response');
 
       if (response == null || response['data'] == null) {
@@ -55,7 +55,7 @@ class GetUserProfileRepoImpl implements GetUserProfileRepo {
   Future<Either<Failure, Unit>> logout() async {
     try {
       await apiService.post(
-        AppUrls.logout,
+        EndPoints.logout,
         headers: {
           'Authorization':
               'Bearer ${await SecureLocalStorage.read(PrefsKeys.token)}',
@@ -65,12 +65,11 @@ class GetUserProfileRepoImpl implements GetUserProfileRepo {
       await SecureLocalStorage.delete(PrefsKeys.user);
       return const Right(unit);
     } catch (e) {
-      return Left(ServerFailure(AppStrings.genericError));
+      return Left(ServerFailure(AppStrings.unexpectedError));
     }
   }
 
   @override
-
   Future<Either<Failure, EditUserProfileModel>> updateUserProfile({
     required String name,
     required String email,
@@ -97,7 +96,7 @@ class GetUserProfileRepoImpl implements GetUserProfileRepo {
       };
 
       final response = await apiService.post(
-        AppUrls.editProfile,
+        EndPoints.editProfile,
         data: FormData.fromMap(data),
       );
 

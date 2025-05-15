@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../../../core/models/failures.dart';
+import '../../../../../core/errors/failures.dart';
 import '../model/otp_response_model.dart';
 
 abstract class OtpUserRepo {
