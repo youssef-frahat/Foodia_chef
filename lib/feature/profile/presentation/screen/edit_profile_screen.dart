@@ -5,16 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodia_chef/core/extensions/space_extension.dart';
-import 'package:foodia_chef/core/widgets/buttons/custom_button.dart';
-import 'package:foodia_chef/core/widgets/text_form_field/custom_text_form_field.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../core/app_config/app_colors.dart';
 import '../../../../core/app_config/app_strings.dart';
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/helpers/messages.dart';
+import '../../../../core/widgets/buttons/custom_button.dart';
+import '../../../../core/widgets/text_form_field/custom_text_form_field.dart';
 import '../logic/cubit/user_profile_cubit.dart';
 import '../widget/app_bar_edit.dart';
 import '../widget/custome_upload_image.dart';
@@ -24,8 +23,11 @@ class EditProfileScreen extends StatefulWidget {
   final String email;
   final String phone;
   final String? image;
+  final String? bio;
+
   const EditProfileScreen({
     super.key,
+    required this.bio,
     required this.name,
     required this.email,
     required this.phone,
@@ -45,8 +47,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   late TextEditingController _currentPasswordController;
   late TextEditingController _newPasswordController;
   late TextEditingController _confirmPasswordController;
+  late TextEditingController _bioController;
+
   XFile? selectedImage;
   final ImagePicker picker = ImagePicker();
+
   @override
   void initState() {
     super.initState();
@@ -56,6 +61,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     _currentPasswordController = TextEditingController();
     _newPasswordController = TextEditingController();
     _confirmPasswordController = TextEditingController();
+    _bioController = TextEditingController(text: widget.bio);
   }
 
   @override
@@ -66,23 +72,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     _currentPasswordController.dispose();
     _newPasswordController.dispose();
     _confirmPasswordController.dispose();
+    _bioController.dispose();
     super.dispose();
   }
-
-  // void _saveProfile() {
-  //   if (_formKey.currentState?.validate() ?? false) {
-  //     final updatedData = {
-  //       "name": _nameController.text.trim(),
-  //       "phone": _phoneController.text.trim(),
-  //       "email": _emailController.text.trim(),
-  //       "currentPassword": _currentPasswordController.text.trim(),
-  //       "newPassword": _newPasswordController.text.trim(),
-  //       "confirmPassword": _confirmPasswordController.text.trim(),
-  //       "image": selectedImage != null ? File(selectedImage!.path) : null,
-  //     };
-
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -118,9 +110,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       CustomUploadImage(
                         selectedImage: selectedImage == null
                             ? (widget.image != null && widget.image!.isNotEmpty
-                                ? File(
-                                    widget.image!,
-                                  ) // هنا نستخدم الصورة التي تم إرسالها عبر extra
+                                ? File(widget.image!)
                                 : null)
                             : File(selectedImage!.path),
                         networkImage: widget.image,
@@ -234,6 +224,21 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           return null;
                         },
                       ),
+                      20.height,
+                      CustomTextField(
+                        hint: AppStrings.bio,
+                        obscure: false,
+                        controller: _bioController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'يرجى إدخال وصف';
+                          }
+                          if (value.length < 10) {
+                            return 'يجب أن يكون الوصف مكونًا من 10 حرفًا على الأقل';
+                          }
+                          return null;
+                        },
+                      ),
                       80.height,
                       CustomButton(
                         text: 'حفظ',
@@ -243,9 +248,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         textColor: Colors.white,
                         onTap: () {
                           if (_formKey.currentState?.validate() ?? false) {
-                            context
-                                .read<UserProfileCubit>()
-                                .updateUserProfile(
+                            context.read<UserProfileCubit>().updateUserProfile(
                                   name: _nameController.text.trim(),
                                   phone: _phoneController.text.trim(),
                                   email: _emailController.text.trim(),
@@ -255,10 +258,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   passwordConfirmation:
                                       _confirmPasswordController.text.trim(),
                                   image: selectedImage,
-                                )
-                                .then((_) {
-                              Navigator.pop(context, true);
-                            });
+                                  bio: _bioController.text.trim(),
+                                );
                           }
                         },
                       ),

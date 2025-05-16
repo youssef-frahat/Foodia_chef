@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:foodia_chef/feature/home/myfood.dart';
+import 'package:foodia_chef/feature/home/wallet.dart';
 
 import '../../core/app_config/app_icons.dart';
 import '../../core/app_config/app_strings.dart';
 import '../home/home_screen.dart';
+import '../profile/presentation/screen/profile_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
@@ -17,9 +20,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   final List<Widget> _screens = [
     const HomeScreen(),
-    const SizedBox(),
-    const SizedBox(),
-    const SizedBox(),
+    const Myfood(),
+    const Wallet(),
+    const ProfileScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -63,8 +66,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
                   Text(
                     item['label']!,
                     style: TextStyle(
-                      color: isSelected ? Colors.orange: Colors.grey,
-                      fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                      color: isSelected ? Colors.orange : Colors.grey,
+                      fontWeight:
+                          isSelected ? FontWeight.bold : FontWeight.normal,
                     ),
                   ),
                   const SizedBox(height: 4),

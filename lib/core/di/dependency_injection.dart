@@ -2,6 +2,7 @@ import 'package:foodia_chef/feature/auth/otp/data/repo/otp_user_repo.dart';
 import 'package:foodia_chef/feature/auth/otp/data/repo/otp_user_repo_impl.dart';
 import 'package:foodia_chef/feature/auth/otp/presentation/logic/cubit/otp_user_cubit.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../feature/auth/login/data/repo/login_repo.dart';
 import '../../feature/auth/login/data/repo/login_repo_impl.dart';
@@ -18,13 +19,16 @@ import '../network/api_services.dart';
 final getIt = GetIt.instance;
 
 Future<void> setupGetIt() async {
-  _initExternals();
+  await _initExternals(); // تعديل هنا
   _initRepositories();
   _initCubits();
 }
 
 //? Externals
-void _initExternals() {
+Future<void> _initExternals() async {
+  final sharedPrefs = await SharedPreferences.getInstance();
+  getIt.registerLazySingleton<SharedPreferences>(() => sharedPrefs);
+
   getIt.registerLazySingleton<ApiService>(() => ApiService());
 }
 
@@ -43,7 +47,7 @@ void _initRepositories() {
   );
 
   getIt.registerLazySingleton<GetUserProfileRepoImpl>(
-    () => GetUserProfileRepoImpl(getIt()),
+    () => GetUserProfileRepoImpl(getIt<ApiService>()),
   );
 }
 
@@ -57,7 +61,6 @@ void _initCubits() {
     () => RegisterCubit(getIt<RegisterRepo>()),
   );
 
-  // ✅ تم تصحيحه هنا: نستخدم الواجهة OtpUserRepo بدلاً من OtpUserRepoImpl
   getIt.registerFactory<OtpUserCubit>(
     () => OtpUserCubit(getIt<OtpUserRepo>()),
   );

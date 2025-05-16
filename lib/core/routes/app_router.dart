@@ -8,6 +8,7 @@ import '../../feature/auth/login/presentation/screens/login_screen.dart';
 import '../../feature/auth/login/presentation/screens/register_screen.dart';
 import '../../feature/auth/otp/presentation/screen/otp_screen.dart';
 import '../../feature/bottom_navigation_bar/custom_button_nav_bar.dart';
+import '../../feature/profile/presentation/screen/edit_profile_screen.dart';
 import '../../feature/splash_onbordig/onbording.dart';
 
 class AppRouter {
@@ -73,8 +74,8 @@ class AppRouter {
               name: Routes.otpScreen,
               pageBuilder: (context, GoRouterState state) {
                 final phoneNumber = state.extra;
-                  if (phoneNumber is! String || phoneNumber.isEmpty) {
-                 return screenWithFadeTransition(
+                if (phoneNumber is! String || phoneNumber.isEmpty) {
+                  return screenWithFadeTransition(
                     context: context,
                     state: state,
                     child: Text("Invalid phone number"),
@@ -85,7 +86,40 @@ class AppRouter {
                   state: state,
                   child: OtpScreen(
                     phoneNumber: phoneNumber,
-                    
+                  ),
+                );
+              },
+            ),
+            GoRoute(
+              path: Routes.editProfileScreen,
+              name: Routes.editProfileScreen,
+              pageBuilder: (context, state) {
+                final extraData = state.extra;
+
+                if (extraData == null || extraData is! Map<String, dynamic>) {
+                  return screenWithFadeTransition(
+                    context: context,
+                    state: state,
+                    child: const Center(child: Text("بيانات غير صحيحة")),
+                  );
+                }
+
+                // استخرج القيم بأمان من الخريطة
+                final name = extraData['name'] as String? ?? '';
+                final email = extraData['email'] as String? ?? '';
+                final phone = extraData['phone'] as String? ?? '';
+                final image = extraData['image'] as String? ?? '';
+                final bio = extraData['bio'] as String? ?? '';
+
+                return screenWithFadeTransition(
+                  context: context,
+                  state: state,
+                  child: EditProfileScreen(
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    image: image,
+                    bio: bio,
                   ),
                 );
               },
@@ -97,7 +131,6 @@ class AppRouter {
                 return BottomNavBar();
               },
             ),
-            
 
             // GoRoute(
             //   parentNavigatorKey: appNavigatorKey,

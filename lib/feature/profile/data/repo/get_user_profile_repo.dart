@@ -11,6 +11,7 @@ abstract class GetUserProfileRepo {
     required String name,
     required String email,
     required String phone,
+    required String bio,
     String? password,
     String? passwordConfirmation,
     String? currentPassword,

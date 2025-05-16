@@ -85,6 +85,7 @@ class ProfileBody extends StatelessWidget {
                             'email': userProfile.email ?? '',
                             'phone': userProfile.phone ?? '',
                             'image': AppStrings.baseUrl + userProfile.image!,
+                            'bio': userProfile.bio ?? '',
                           },
                         );
 
@@ -120,6 +121,10 @@ class ProfileBody extends StatelessWidget {
               ProfileField(
                 title: 'البريد الالكتروني:',
                 value: userProfile.email ?? 'البريد الإلكتروني غير متوفر',
+              ),
+              ProfileField(
+                title: 'السيرة الذاتية:',
+                value: userProfile.bio ?? 'السيرة الذاتية غير متوفرة',
               ),
               60.height,
               Padding(
