@@ -37,14 +37,17 @@ void _initRepositories() {
   getIt.registerLazySingleton<RegisterRepo>(
     () => RegisterRepositoryImpl(getIt<ApiService>()),
   );
+
   getIt.registerLazySingleton<OtpUserRepo>(
     () => OtpUserRepoImpl(getIt<ApiService>()),
   );
-   getIt.registerLazySingleton<GetUserProfileRepoImpl>(
+
+  getIt.registerLazySingleton<GetUserProfileRepoImpl>(
     () => GetUserProfileRepoImpl(getIt()),
   );
 }
 
+//? Cubits
 void _initCubits() {
   getIt.registerFactory<LoginCubit>(
     () => LoginCubit(getIt<LoginRepository>()),
@@ -53,6 +56,13 @@ void _initCubits() {
   getIt.registerFactory<RegisterCubit>(
     () => RegisterCubit(getIt<RegisterRepo>()),
   );
-  getIt.registerFactory<OtpUserCubit>(() => OtpUserCubit(getIt()));
-  getIt.registerFactory<UserProfileCubit>(() => UserProfileCubit(getIt()));
+
+  // ✅ تم تصحيحه هنا: نستخدم الواجهة OtpUserRepo بدلاً من OtpUserRepoImpl
+  getIt.registerFactory<OtpUserCubit>(
+    () => OtpUserCubit(getIt<OtpUserRepo>()),
+  );
+
+  getIt.registerFactory<UserProfileCubit>(
+    () => UserProfileCubit(getIt<GetUserProfileRepoImpl>()),
+  );
 }

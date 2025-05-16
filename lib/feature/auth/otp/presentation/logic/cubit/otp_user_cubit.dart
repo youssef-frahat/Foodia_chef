@@ -1,13 +1,13 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../data/repo/otp_user_repo_impl.dart';
+import '../../../data/repo/otp_user_repo.dart'; // ✅ استيراد الواجهة بدلًا من الـ Impl
 
 part 'otp_user_state.dart';
 
 class OtpUserCubit extends Cubit<OtpUserState> {
-  final OtpUserRepoImpl otpUserRepoImpl;
-  OtpUserCubit(this.otpUserRepoImpl) : super(OtpUserInitial());
+  final OtpUserRepo otpUserRepo; // ✅ التغيير هنا لاستخدام الواجهة
+
+  OtpUserCubit(this.otpUserRepo) : super(OtpUserInitial());
 
   Future<void> validateOtpCode({
     required String phoneNumber,
@@ -15,7 +15,7 @@ class OtpUserCubit extends Cubit<OtpUserState> {
   }) async {
     emit(ValidateOtpCodeLoading());
     try {
-      final result = await otpUserRepoImpl.verifyOtp(
+      final result = await otpUserRepo.verifyOtp(
         phoneNumber: phoneNumber,
         otpCode: otpCode,
       );
@@ -28,8 +28,6 @@ class OtpUserCubit extends Cubit<OtpUserState> {
         },
         (_) {
           emit(ValidateOtpCodeSuccess());
-          // Optional: Reset state
-          // Future.delayed(Duration.zero, () => emit(OtpUserInitial()));
         },
       );
     } catch (e) {
@@ -41,7 +39,7 @@ class OtpUserCubit extends Cubit<OtpUserState> {
   Future<void> sendOtpCode({required String phoneNumber}) async {
     emit(SendOtpCodeLoading());
     try {
-      final result = await otpUserRepoImpl.sendOtp(phoneNumber: phoneNumber);
+      final result = await otpUserRepo.sendOtp(phoneNumber: phoneNumber);
       result.fold(
         (failure) {
           final errorMessage = failure.message.trim().isNotEmpty
@@ -51,8 +49,6 @@ class OtpUserCubit extends Cubit<OtpUserState> {
         },
         (_) {
           emit(SendOtpCodeSuccess());
-          // Optional: Reset state
-          // Future.delayed(Duration.zero, () => emit(OtpUserInitial()));
         },
       );
     } catch (e) {
