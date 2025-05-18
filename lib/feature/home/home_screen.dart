@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     List<Widget> allCategory = [
       AllOrderScreen(),
-      RequestsinPreparation(),
+      RequestsInPreparation(),
       CompletedrEquests(),
       CanceledRequests(),
     ];
