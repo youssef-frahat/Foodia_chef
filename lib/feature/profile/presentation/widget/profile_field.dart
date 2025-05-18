@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foodia_chef/core/extensions/space_extension.dart';
 
 class ProfileField extends StatelessWidget {
   final String title;
@@ -14,11 +15,10 @@ class ProfileField extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 15.h),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.orange, width: 2.w),
-
         borderRadius: BorderRadius.circular(30),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             title,
@@ -28,7 +28,18 @@ class ProfileField extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          Text(value, style: TextStyle(color: Colors.black, fontSize: 14)),
+          5.width,
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.55,
+            child: Text(
+              value,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ),
         ],
       ),
     );

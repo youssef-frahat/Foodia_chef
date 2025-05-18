@@ -1,6 +1,12 @@
 import 'package:foodia_chef/feature/auth/otp/data/repo/otp_user_repo.dart';
 import 'package:foodia_chef/feature/auth/otp/data/repo/otp_user_repo_impl.dart';
 import 'package:foodia_chef/feature/auth/otp/presentation/logic/cubit/otp_user_cubit.dart';
+import 'package:foodia_chef/feature/home/data/repo/get_orders/get_orders_repo.dart';
+import 'package:foodia_chef/feature/home/data/repo/get_orders/get_orders_repo_impl.dart';
+import 'package:foodia_chef/feature/home/data/repo/update_status_order/update_status_order_repo.dart';
+import 'package:foodia_chef/feature/home/data/repo/update_status_order/update_status_order_repo_impl.dart';
+import 'package:foodia_chef/feature/home/presentation/cubit/get_orders_cubit/get_orders_cubit.dart';
+import 'package:foodia_chef/feature/home/presentation/cubit/update_status_order_cubit/update_status_order_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -49,6 +55,14 @@ void _initRepositories() {
   getIt.registerLazySingleton<GetUserProfileRepoImpl>(
     () => GetUserProfileRepoImpl(getIt<ApiService>()),
   );
+
+  getIt.registerLazySingleton<OrderStatusRepository>(
+        () => OrderStatusRepositoryImpl(getIt<ApiService>()),
+  );
+
+  getIt.registerLazySingleton<GetOrdersRepo>(
+        () => GetOrdersRepoImpl(apiService: getIt<ApiService>()),
+  );
 }
 
 //? Cubits
@@ -67,5 +81,13 @@ void _initCubits() {
 
   getIt.registerFactory<UserProfileCubit>(
     () => UserProfileCubit(getIt<GetUserProfileRepoImpl>()),
+  );
+
+  getIt.registerFactory<UpdateOrderStatusCubit>(
+        () => UpdateOrderStatusCubit(getIt<OrderStatusRepository>()),
+  );
+
+  getIt.registerFactory<GetOrdersCubit>(
+        () => GetOrdersCubit(getIt<GetOrdersRepo>()),
   );
 }

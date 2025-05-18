@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:foodia_chef/feature/home/myfood.dart';
-import 'package:foodia_chef/feature/home/wallet.dart';
+import 'package:foodia_chef/feature/home/presentation/myfood.dart';
+import 'package:foodia_chef/feature/home/presentation/wallet.dart';
 
 import '../../core/app_config/app_icons.dart';
 import '../../core/app_config/app_strings.dart';
-import '../home/home_screen.dart';
+import '../home/presentation/home_screen.dart';
 import '../profile/presentation/screen/profile_screen.dart';
 
 class BottomNavBar extends StatefulWidget {

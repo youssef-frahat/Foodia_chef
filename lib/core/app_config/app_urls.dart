@@ -10,4 +10,5 @@ class AppUrls {
   static const String profile = '$base/profile';
   static const String logout = '$base/logout';
   static const String editProfile = '$base/profile';
+  static const String updateStatusOrder = '$base/update/order/';
 }
