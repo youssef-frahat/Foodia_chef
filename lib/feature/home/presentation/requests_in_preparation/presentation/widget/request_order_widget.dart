@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foodia_chef/core/extensions/space_extension.dart';
 import 'package:foodia_chef/core/widgets/buttons/custom_button.dart';
 import 'package:foodia_chef/feature/home/presentation/cubit/update_status_order_cubit/update_status_order_cubit.dart';
+import 'package:foodia_chef/feature/home/presentation/cubit/get_orders_cubit/get_orders_cubit.dart';
 
 import '../../../../../../core/app_config/app_icons.dart';
 import '../../../../../../core/app_config/app_strings.dart';
@@ -16,6 +17,8 @@ class RequestOrderWidget extends StatelessWidget {
   final String imageUrl;
   final int qty;
   final String userName;
+  final int orderId;
+
   const RequestOrderWidget({
     super.key,
     required this.name,
@@ -23,6 +26,7 @@ class RequestOrderWidget extends StatelessWidget {
     required this.imageUrl,
     required this.qty,
     required this.userName,
+    required this.orderId,
   });
 
   @override
@@ -33,6 +37,8 @@ class RequestOrderWidget extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(state.response.message)),
           );
+          // إعادة تحميل الطلبات
+          context.read<GetOrdersCubit>().fetchOrders("accept");
         } else if (state is UpdateOrderStatusError) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(state.message)),
@@ -53,10 +59,9 @@ class RequestOrderWidget extends StatelessWidget {
           ),
           child: Column(
             children: [
-              // First row: User info and total price
               Padding(
                 padding:
-                    EdgeInsets.symmetric(horizontal: 16.0.h, vertical: 16.0.w),
+                EdgeInsets.symmetric(horizontal: 16.0.h, vertical: 16.0.w),
                 child: Row(
                   children: [
                     SvgPicture.asset(AppIcons.frame),
@@ -77,7 +82,6 @@ class RequestOrderWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              // Second row: Item image, name, quantity, and price
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0.h),
                 child: Row(
@@ -86,7 +90,7 @@ class RequestOrderWidget extends StatelessWidget {
                       radius: 30.r,
                       backgroundColor: Color(0xFFF8A435),
                       backgroundImage:
-                          NetworkImage('${AppStrings.baseUrl}$imageUrl'),
+                      NetworkImage('${AppStrings.baseUrl}$imageUrl'),
                     ),
                     10.width,
                     Expanded(
@@ -103,7 +107,7 @@ class RequestOrderWidget extends StatelessWidget {
                         Text(
                           "الكمية",
                           style:
-                              FontStyles.textStyle14.copyWith(fontSize: 18.sp),
+                          FontStyles.textStyle14.copyWith(fontSize: 18.sp),
                         ),
                         5.height,
                         Text(
@@ -120,7 +124,7 @@ class RequestOrderWidget extends StatelessWidget {
                         Text(
                           "السعر",
                           style:
-                              FontStyles.textStyle14.copyWith(fontSize: 18.sp),
+                          FontStyles.textStyle14.copyWith(fontSize: 18.sp),
                         ),
                         5.height,
                         Text(
@@ -134,7 +138,6 @@ class RequestOrderWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              // 10.height,
               Divider(
                 color: Colors.grey,
                 thickness: 2.h,
@@ -151,9 +154,9 @@ class RequestOrderWidget extends StatelessWidget {
                         context
                             .read<UpdateOrderStatusCubit>()
                             .updateOrderStatus(
-                              orderId: 2,
-                              status: 'complete',
-                            );
+                          orderId: orderId,
+                          status: 'complete',
+                        );
                       },
                       backgroundColor: Colors.orange,
                       textColor: Colors.white,
