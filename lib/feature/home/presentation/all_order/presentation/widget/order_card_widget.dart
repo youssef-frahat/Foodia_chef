@@ -9,12 +9,21 @@ import 'package:foodia_chef/core/extensions/space_extension.dart';
 import 'package:foodia_chef/core/widgets/buttons/custom_button.dart';
 import 'package:foodia_chef/feature/home/presentation/cubit/update_status_order_cubit/update_status_order_cubit.dart';
 
-
 class OrderCardWidget extends StatelessWidget {
+  final String name;
+  final String price;
+  final String imageUrl;
+  final int qty;
+  final String userName;
   //final int orderId;
 
   const OrderCardWidget({
     super.key,
+    required this.name,
+    required this.price,
+    required this.imageUrl,
+    required this.qty,
+    required this.userName,
     //required this.orderId,
   });
 
@@ -54,14 +63,14 @@ class OrderCardWidget extends StatelessWidget {
                   children: [
                     SvgPicture.asset(AppIcons.frame),
                     10.width,
-                    Text('كريم علي', style: FontStyles.textStyle14),
+                    Text(userName, style: FontStyles.textStyle14),
                     const Spacer(),
                     Column(
                       children: [
                         Text("الاجمالي", style: FontStyles.textStyle14),
                         5.height,
                         Text(
-                          '145 ج.م',
+                          '${(double.parse(price) * qty).toStringAsFixed(2)} ج.م',
                           style: FontStyles.textStyle14
                               .copyWith(color: Colors.black),
                         ),
@@ -78,14 +87,14 @@ class OrderCardWidget extends StatelessWidget {
                     CircleAvatar(
                       radius: 30.r,
                       backgroundColor: const Color(0xFFF8A435),
-                      backgroundImage: const NetworkImage(
-                        "https://cdn.supermama.me/Recipe/88305/1507578229/web-watermarked-large/%D8%B5%D9%88%D8%B1%D8%A9-%D8%A8%D8%B9%D9%86%D9%88%D8%A7%D9%86-%D8%B5%D9%8A%D9%86%D9%8A%D8%A9-%D9%85%D9%83%D8%B1%D9%88%D9%86%D8%A9-%D8%A8%D8%A7%D9%84%D8%AF%D8%AC%D8%A7%D8%AC-%D9%81%D9%8A-%D8%A7%D9%84%D9%81%D8%B1%D9%86.webp",
-                      ),
+                      backgroundImage:
+                          NetworkImage('${AppStrings.baseUrl}$imageUrl'),
                     ),
                     10.width,
                     Text(
-                      'مكرونة فرن بالدجاج',
+                      name,
                       style: FontStyles.textStyle14,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     const Spacer(),
                     Column(
@@ -97,7 +106,7 @@ class OrderCardWidget extends StatelessWidget {
                         ),
                         5.height,
                         Text(
-                          '1',
+                          '$qty',
                           textAlign: TextAlign.center,
                           style: FontStyles.textStyle14
                               .copyWith(color: Colors.black),
@@ -114,7 +123,7 @@ class OrderCardWidget extends StatelessWidget {
                         ),
                         5.height,
                         Text(
-                          '145 ج.م',
+                          '$price ج.م',
                           textAlign: TextAlign.center,
                           style: FontStyles.textStyle14
                               .copyWith(color: Colors.black),
