@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:foodia_chef/feature/home/all_order/data/model/update_status_order_req_model.dart';
-import 'package:foodia_chef/feature/home/all_order/data/model/update_status_order_res_model.dart';
-import 'package:foodia_chef/feature/home/all_order/data/repo/update_status_order_repo.dart';
+import 'package:foodia_chef/feature/home/data/model/update_status_order_model/update_status_order_req_model.dart';
+import 'package:foodia_chef/feature/home/data/model/update_status_order_model/update_status_order_res_model.dart';
+import 'package:foodia_chef/feature/home/data/repo/update_status_order/update_status_order_repo.dart';
 
 
 

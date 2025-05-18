@@ -1,15 +1,15 @@
 import 'package:dartz/dartz.dart';
 import 'package:foodia_chef/core/app_config/app_urls.dart';
 import 'package:foodia_chef/core/network/api_services.dart';
-import 'package:foodia_chef/feature/home/all_order/data/model/update_status_order_req_model.dart';
-import 'package:foodia_chef/feature/home/all_order/data/model/update_status_order_res_model.dart';
-import 'package:foodia_chef/feature/home/all_order/data/repo/update_status_order_repo.dart';
+import 'package:foodia_chef/feature/home/data/model/update_status_order_model/update_status_order_req_model.dart';
+import 'package:foodia_chef/feature/home/data/model/update_status_order_model/update_status_order_res_model.dart';
+import 'package:foodia_chef/feature/home/data/repo/update_status_order/update_status_order_repo.dart';
 import 'dart:developer';
 
-import '../../../../../core/app_config/app_strings.dart';
-import '../../../../../core/helpers/connectivity_helper.dart';
-import '../../../../../core/models/failures.dart';
-import '../../../../../core/models/exceptions.dart';
+import '../../../../../../core/app_config/app_strings.dart';
+import '../../../../../../core/helpers/connectivity_helper.dart';
+import '../../../../../../core/models/failures.dart';
+import '../../../../../../core/models/exceptions.dart';
 
 
 class OrderStatusRepositoryImpl extends OrderStatusRepository {

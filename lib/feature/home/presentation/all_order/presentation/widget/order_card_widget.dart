@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:foodia_chef/core/app_config/app_icons.dart';
+import 'package:foodia_chef/core/app_config/app_strings.dart';
+import 'package:foodia_chef/core/app_config/font_styles.dart';
 import 'package:foodia_chef/core/extensions/space_extension.dart';
 import 'package:foodia_chef/core/widgets/buttons/custom_button.dart';
-import 'package:foodia_chef/feature/home/all_order/presentation/cubit/update_status_order_cubit.dart';
+import 'package:foodia_chef/feature/home/presentation/cubit/update_status_order_cubit/update_status_order_cubit.dart';
 
-import '../../../../../../core/app_config/app_icons.dart';
-import '../../../../../../core/app_config/app_strings.dart';
-import '../../../../../../core/app_config/font_styles.dart';
 
-class RequstOrederWidget extends StatelessWidget {
-  const RequstOrederWidget({
+class OrderCardWidget extends StatelessWidget {
+  //final int orderId;
+
+  const OrderCardWidget({
     super.key,
+    //required this.orderId,
   });
 
   @override
@@ -35,9 +38,9 @@ class RequstOrederWidget extends StatelessWidget {
           margin: EdgeInsets.only(bottom: 16.0.h),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.r),
-            color: Color(0xFFF8F8F8),
+            color: const Color(0xFFF8F8F8),
             border: Border.all(
-              color: Color(0xFFF8A435),
+              color: const Color(0xFFF8A435),
               width: 2.w,
             ),
           ),
@@ -46,13 +49,13 @@ class RequstOrederWidget extends StatelessWidget {
               // First row: User info and total price
               Padding(
                 padding:
-                EdgeInsets.symmetric(horizontal: 16.0.h, vertical: 16.0.w),
+                    EdgeInsets.symmetric(horizontal: 16.0.h, vertical: 16.0.w),
                 child: Row(
                   children: [
                     SvgPicture.asset(AppIcons.frame),
                     10.width,
                     Text('كريم علي', style: FontStyles.textStyle14),
-                    Spacer(),
+                    const Spacer(),
                     Column(
                       children: [
                         Text("الاجمالي", style: FontStyles.textStyle14),
@@ -74,8 +77,8 @@ class RequstOrederWidget extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 30.r,
-                      backgroundColor: Color(0xFFF8A435),
-                      backgroundImage: NetworkImage(
+                      backgroundColor: const Color(0xFFF8A435),
+                      backgroundImage: const NetworkImage(
                         "https://cdn.supermama.me/Recipe/88305/1507578229/web-watermarked-large/%D8%B5%D9%88%D8%B1%D8%A9-%D8%A8%D8%B9%D9%86%D9%88%D8%A7%D9%86-%D8%B5%D9%8A%D9%86%D9%8A%D8%A9-%D9%85%D9%83%D8%B1%D9%88%D9%86%D8%A9-%D8%A8%D8%A7%D9%84%D8%AF%D8%AC%D8%A7%D8%AC-%D9%81%D9%8A-%D8%A7%D9%84%D9%81%D8%B1%D9%86.webp",
                       ),
                     ),
@@ -84,13 +87,13 @@ class RequstOrederWidget extends StatelessWidget {
                       'مكرونة فرن بالدجاج',
                       style: FontStyles.textStyle14,
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Column(
                       children: [
                         Text(
                           "الكمية",
-                          style: FontStyles.textStyle14.copyWith(fontSize: 18
-                              .sp),
+                          style:
+                              FontStyles.textStyle14.copyWith(fontSize: 18.sp),
                         ),
                         5.height,
                         Text(
@@ -106,8 +109,8 @@ class RequstOrederWidget extends StatelessWidget {
                       children: [
                         Text(
                           "السعر",
-                          style: FontStyles.textStyle14.copyWith(fontSize: 18
-                              .sp),
+                          style:
+                              FontStyles.textStyle14.copyWith(fontSize: 18.sp),
                         ),
                         5.height,
                         Text(
@@ -130,30 +133,42 @@ class RequstOrederWidget extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0.h),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CustomElevationButton(
-                      title: AppStrings.prepared,
+                      title: AppStrings.accpted,
                       onPressed: () {
                         context
                             .read<UpdateOrderStatusCubit>()
                             .updateOrderStatus(
-                          orderId: 2,
-                          status: 'pending',
-                        );
+                              orderId: 2,
+                              status: 'accept',
+                            );
                       },
                       backgroundColor: Colors.orange,
                       textColor: Colors.white,
                       fontSize: 16.0.sp,
                       elevation: 5.0,
                       borderRadius: 20.0,
-                      padding: EdgeInsets.symmetric(
-                        vertical: 10.h,
-                        horizontal: 30.w,
-                      ),
-                      width: 300.w,
+                      width: 140.w,
                     ),
-
+                    CustomElevationButton(
+                      title: AppStrings.rejected,
+                      onPressed: () {
+                        context
+                            .read<UpdateOrderStatusCubit>()
+                            .updateOrderStatus(
+                              orderId: 2,
+                              status: 'reject',
+                            );
+                      },
+                      backgroundColor: const Color(0xFF5F4B46),
+                      textColor: Colors.white,
+                      fontSize: 16.0.sp,
+                      elevation: 5.0,
+                      borderRadius: 20.0,
+                      width: 140.w,
+                    ),
                   ],
                 ),
               ),
