@@ -37,7 +37,7 @@ class CanceledRequestsWidget extends StatelessWidget {
               CircleAvatar(
                 radius: 30.r,
                 backgroundColor: const Color(0xFFF8A435),
-                backgroundImage: NetworkImage(imageUrl),
+                backgroundImage: NetworkImage('${AppStrings.baseUrl}$imageUrl'),
               ),
               10.width,
               Expanded(
