@@ -10,9 +10,19 @@ import '../../../../../../core/app_config/app_icons.dart';
 import '../../../../../../core/app_config/app_strings.dart';
 import '../../../../../../core/app_config/font_styles.dart';
 
-class RequstOrederWidget extends StatelessWidget {
-  const RequstOrederWidget({
+class RequestOrderWidget extends StatelessWidget {
+  final String name;
+  final String price;
+  final String imageUrl;
+  final int qty;
+  final String userName;
+  const RequestOrderWidget({
     super.key,
+    required this.name,
+    required this.price,
+    required this.imageUrl,
+    required this.qty,
+    required this.userName,
   });
 
   @override
@@ -46,19 +56,19 @@ class RequstOrederWidget extends StatelessWidget {
               // First row: User info and total price
               Padding(
                 padding:
-                EdgeInsets.symmetric(horizontal: 16.0.h, vertical: 16.0.w),
+                    EdgeInsets.symmetric(horizontal: 16.0.h, vertical: 16.0.w),
                 child: Row(
                   children: [
                     SvgPicture.asset(AppIcons.frame),
                     10.width,
-                    Text('كريم علي', style: FontStyles.textStyle14),
+                    Text(userName, style: FontStyles.textStyle14),
                     Spacer(),
                     Column(
                       children: [
                         Text("الاجمالي", style: FontStyles.textStyle14),
                         5.height,
                         Text(
-                          '145 ج.م',
+                          '${(double.parse(price) * qty).toStringAsFixed(2)} ج.م',
                           style: FontStyles.textStyle14
                               .copyWith(color: Colors.black),
                         ),
@@ -75,26 +85,26 @@ class RequstOrederWidget extends StatelessWidget {
                     CircleAvatar(
                       radius: 30.r,
                       backgroundColor: Color(0xFFF8A435),
-                      backgroundImage: NetworkImage(
-                        "https://cdn.supermama.me/Recipe/88305/1507578229/web-watermarked-large/%D8%B5%D9%88%D8%B1%D8%A9-%D8%A8%D8%B9%D9%86%D9%88%D8%A7%D9%86-%D8%B5%D9%8A%D9%86%D9%8A%D8%A9-%D9%85%D9%83%D8%B1%D9%88%D9%86%D8%A9-%D8%A8%D8%A7%D9%84%D8%AF%D8%AC%D8%A7%D8%AC-%D9%81%D9%8A-%D8%A7%D9%84%D9%81%D8%B1%D9%86.webp",
-                      ),
+                      backgroundImage:
+                          NetworkImage('${AppStrings.baseUrl}$imageUrl'),
                     ),
                     10.width,
                     Text(
-                      'مكرونة فرن بالدجاج',
+                      name,
                       style: FontStyles.textStyle14,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     Spacer(),
                     Column(
                       children: [
                         Text(
                           "الكمية",
-                          style: FontStyles.textStyle14.copyWith(fontSize: 18
-                              .sp),
+                          style:
+                              FontStyles.textStyle14.copyWith(fontSize: 18.sp),
                         ),
                         5.height,
                         Text(
-                          '1',
+                          '$qty',
                           textAlign: TextAlign.center,
                           style: FontStyles.textStyle14
                               .copyWith(color: Colors.black),
@@ -106,12 +116,12 @@ class RequstOrederWidget extends StatelessWidget {
                       children: [
                         Text(
                           "السعر",
-                          style: FontStyles.textStyle14.copyWith(fontSize: 18
-                              .sp),
+                          style:
+                              FontStyles.textStyle14.copyWith(fontSize: 18.sp),
                         ),
                         5.height,
                         Text(
-                          '145 ج.م',
+                          '$price ج.م',
                           textAlign: TextAlign.center,
                           style: FontStyles.textStyle14
                               .copyWith(color: Colors.black),
@@ -138,9 +148,9 @@ class RequstOrederWidget extends StatelessWidget {
                         context
                             .read<UpdateOrderStatusCubit>()
                             .updateOrderStatus(
-                          orderId: 2,
-                          status: 'pending',
-                        );
+                              orderId: 2,
+                              status: 'pending',
+                            );
                       },
                       backgroundColor: Colors.orange,
                       textColor: Colors.white,
@@ -153,7 +163,6 @@ class RequstOrederWidget extends StatelessWidget {
                       ),
                       width: 300.w,
                     ),
-
                   ],
                 ),
               ),
