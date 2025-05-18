@@ -12,7 +12,7 @@ class UpdateStatusOrderResponseModel extends Equatable {
   factory UpdateStatusOrderResponseModel.fromJson(Map<String, dynamic> json) {
     return UpdateStatusOrderResponseModel(
       message: json['message'] ?? '',
-      wallet: json['wallet'] ?? '0.00',
+      wallet: json['wallet']?.toString() ?? '0.00',
     );
   }
 

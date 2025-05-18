@@ -149,7 +149,7 @@ class RequestOrderWidget extends StatelessWidget {
                             .read<UpdateOrderStatusCubit>()
                             .updateOrderStatus(
                               orderId: 2,
-                              status: 'pending',
+                              status: 'complete',
                             );
                       },
                       backgroundColor: Colors.orange,
