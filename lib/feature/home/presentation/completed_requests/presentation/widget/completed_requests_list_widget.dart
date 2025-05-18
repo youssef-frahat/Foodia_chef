@@ -4,9 +4,15 @@ import 'package:foodia_chef/core/extensions/space_extension.dart';
 import '../../../../../../core/app_config/app_strings.dart';
 import '../../../../../../core/app_config/font_styles.dart';
 
-class CompletedrEquestsListWidget extends StatelessWidget {
-  const CompletedrEquestsListWidget({
+class CompletedRequestsListWidget extends StatelessWidget {
+  final String name;
+  final String price;
+  final String imageUrl;
+  const CompletedRequestsListWidget({
     super.key,
+    required this.name,
+    required this.price,
+    required this.imageUrl,
   });
 
   @override
@@ -30,37 +36,41 @@ class CompletedrEquestsListWidget extends StatelessWidget {
               CircleAvatar(
                 radius: 30.r,
                 backgroundColor: Color(0xFFF8A435),
-                backgroundImage: NetworkImage(
-                  "https://cdn.supermama.me/Recipe/88305/1507578229/web-watermarked-large/%D8%B5%D9%88%D8%B1%D8%A9-%D8%A8%D8%B9%D9%86%D9%88%D8%A7%D9%86-%D8%B5%D9%8A%D9%86%D9%8A%D8%A9-%D9%85%D9%83%D8%B1%D9%88%D9%86%D8%A9-%D8%A8%D8%A7%D9%84%D8%AF%D8%AC%D8%A7%D8%AC-%D9%81%D9%8A-%D8%A7%D9%84%D9%81%D8%B1%D9%86.webp",
-                ),
+                backgroundImage: NetworkImage('${AppStrings.baseUrl}$imageUrl'),
               ),
               10.width,
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'مكرونة فرن بالدجاج',
-                    style: FontStyles.textStyle14,
-                  ),
-                  10.height,
-                  Text(
-                    '135 ج.م',
-                    style: FontStyles.textStyle14.copyWith(
-                      color: Colors.black,
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      name,
+                      style: FontStyles.textStyle14,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                  ),
-                ],
+                    10.height,
+                    Text(
+                      '$price ج.م',
+                      style: FontStyles.textStyle14.copyWith(
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              Spacer(),
-              Icon(Icons.check_circle, color: Colors.green, size: 15.sp,),
+              Icon(
+                Icons.check_circle,
+                color: Colors.green,
+                size: 15.sp,
+              ),
               10.width,
               Text(
                 AppStrings.completed,
                 style: FontStyles.textStyle14.copyWith(
-                  color: Colors.green,
-                  fontSize: 17.sp,
-                  fontWeight: FontWeight.w600
-                ),
+                    color: Colors.green,
+                    fontSize: 17.sp,
+                    fontWeight: FontWeight.w600),
               ),
             ],
           ),
