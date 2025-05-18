@@ -89,10 +89,13 @@ class RequestOrderWidget extends StatelessWidget {
                           NetworkImage('${AppStrings.baseUrl}$imageUrl'),
                     ),
                     10.width,
-                    Text(
-                      name,
-                      style: FontStyles.textStyle14,
-                      overflow: TextOverflow.ellipsis,
+                    Expanded(
+                      child: Text(
+                        name,
+                        style: FontStyles.textStyle14,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
                     ),
                     Spacer(),
                     Column(
