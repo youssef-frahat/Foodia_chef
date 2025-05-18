@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foodia_chef/core/app_config/app_icons.dart';
 import 'package:foodia_chef/core/app_config/app_images.dart';
 import 'package:foodia_chef/feature/home/presentation/all_order/presentation/screen/all_order_screen.dart';
-import 'package:foodia_chef/feature/home/presentation/canceled_requests/presentation/screen/canceled_requests.dart';
+import 'package:foodia_chef/feature/home/presentation/canceled_requests/presentation/screen/canceled_requests_screen.dart';
 import 'package:foodia_chef/feature/home/presentation/completed_requests/presentation/screen/completedr_equests.dart';
 import 'package:foodia_chef/feature/home/presentation/requests_in_preparation/presentation/screen/requestsIn_preparation.dart';
 
@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
       AllOrderScreen(),
       RequestsInPreparation(),
       CompletedrEquests(),
-      CanceledRequests(),
+      CanceledRequestsScreen(),
     ];
 
     return Scaffold(

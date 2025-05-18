@@ -5,8 +5,15 @@ import '../../../../../../core/app_config/app_strings.dart';
 import '../../../../../../core/app_config/font_styles.dart';
 
 class CanceledRequestsWidget extends StatelessWidget {
+  final String name;
+  final String price;
+  final String imageUrl;
+
   const CanceledRequestsWidget({
     super.key,
+    required this.name,
+    required this.price,
+    required this.imageUrl,
   });
 
   @override
@@ -17,9 +24,9 @@ class CanceledRequestsWidget extends StatelessWidget {
         margin: EdgeInsets.only(bottom: 16.0.h),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.r),
-          color: Color(0xFFF8F8F8),
+          color: const Color(0xFFF8F8F8),
           border: Border.all(
-            color: Color(0xFFF8A435),
+            color: const Color(0xFFF8A435),
             width: 2.w,
           ),
         ),
@@ -29,29 +36,27 @@ class CanceledRequestsWidget extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 30.r,
-                backgroundColor: Color(0xFFF8A435),
-                backgroundImage: NetworkImage(
-                  "https://cdn.supermama.me/Recipe/88305/1507578229/web-watermarked-large/%D8%B5%D9%88%D8%B1%D8%A9-%D8%A8%D8%B9%D9%86%D9%88%D8%A7%D9%86-%D8%B5%D9%8A%D9%86%D9%8A%D8%A9-%D9%85%D9%83%D8%B1%D9%88%D9%86%D8%A9-%D8%A8%D8%A7%D9%84%D8%AF%D8%AC%D8%A7%D8%AC-%D9%81%D9%8A-%D8%A7%D9%84%D9%81%D8%B1%D9%86.webp",
-                ),
+                backgroundColor: const Color(0xFFF8A435),
+                backgroundImage: NetworkImage(imageUrl),
               ),
               10.width,
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'مكرونة فرن بالدجاج',
+                    name,
                     style: FontStyles.textStyle14,
                   ),
                   10.height,
                   Text(
-                    '135 ج.م',
+                    '$price ج.م',
                     style: FontStyles.textStyle14.copyWith(
                       color: Colors.black,
                     ),
                   ),
                 ],
               ),
-              Spacer(),
+              const Spacer(),
               Icon(Icons.cancel, color: Colors.red, size: 15.sp),
               10.width,
               Text(
@@ -59,7 +64,7 @@ class CanceledRequestsWidget extends StatelessWidget {
                 style: FontStyles.textStyle14.copyWith(
                   color: Colors.red,
                   fontSize: 17.sp,
-                  fontWeight: FontWeight.w600
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ],
