@@ -38,6 +38,7 @@ class RequestsInPreparation extends StatelessWidget {
                 imageUrl: item.food.image,
                 qty: item.qty,
                 userName: item.order.user.name,
+                orderId: item.id,
               );
             },
           );

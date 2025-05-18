@@ -7,6 +7,7 @@ import 'package:foodia_chef/core/app_config/app_strings.dart';
 import 'package:foodia_chef/core/app_config/font_styles.dart';
 import 'package:foodia_chef/core/extensions/space_extension.dart';
 import 'package:foodia_chef/core/widgets/buttons/custom_button.dart';
+import 'package:foodia_chef/feature/home/presentation/cubit/get_orders_cubit/get_orders_cubit.dart';
 import 'package:foodia_chef/feature/home/presentation/cubit/update_status_order_cubit/update_status_order_cubit.dart';
 
 class OrderCardWidget extends StatelessWidget {
@@ -15,7 +16,7 @@ class OrderCardWidget extends StatelessWidget {
   final String imageUrl;
   final int qty;
   final String userName;
-  //final int orderId;
+  final int orderId;
 
   const OrderCardWidget({
     super.key,
@@ -23,7 +24,7 @@ class OrderCardWidget extends StatelessWidget {
     required this.price,
     required this.imageUrl,
     required this.qty,
-    required this.userName,
+    required this.userName, required this.orderId,
     //required this.orderId,
   });
 
@@ -35,6 +36,8 @@ class OrderCardWidget extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(state.response.message)),
           );
+          // إعادة تحميل الطلبات
+          context.read<GetOrdersCubit>().fetchOrders("pending");
         } else if (state is UpdateOrderStatusError) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(state.message)),
@@ -153,7 +156,7 @@ class OrderCardWidget extends StatelessWidget {
                         context
                             .read<UpdateOrderStatusCubit>()
                             .updateOrderStatus(
-                              orderId: 2,
+                              orderId: orderId,
                               status: 'accept',
                             );
                       },
@@ -170,7 +173,7 @@ class OrderCardWidget extends StatelessWidget {
                         context
                             .read<UpdateOrderStatusCubit>()
                             .updateOrderStatus(
-                              orderId: 2,
+                              orderId: orderId,
                               status: 'reject',
                             );
                       },

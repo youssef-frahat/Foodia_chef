@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodia_chef/feature/home/presentation/cubit/get_orders_cubit/get_orders_cubit.dart';
 import '../widget/order_card_widget.dart';
 
-
 class AllOrders extends StatelessWidget {
   const AllOrders({super.key});
 
@@ -39,6 +38,7 @@ class AllOrders extends StatelessWidget {
                 imageUrl: item.food.image,
                 qty: item.qty,
                 userName: item.order.user.name,
+                orderId: item.id,
               );
             },
           );
