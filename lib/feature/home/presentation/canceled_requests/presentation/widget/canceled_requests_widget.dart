@@ -40,23 +40,26 @@ class CanceledRequestsWidget extends StatelessWidget {
                 backgroundImage: NetworkImage(imageUrl),
               ),
               10.width,
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    name,
-                    style: FontStyles.textStyle14,
-                  ),
-                  10.height,
-                  Text(
-                    '$price ج.م',
-                    style: FontStyles.textStyle14.copyWith(
-                      color: Colors.black,
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      name,
+                      style: FontStyles.textStyle14,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                  ),
-                ],
+                    10.height,
+                    Text(
+                      '$price ج.م',
+                      style: FontStyles.textStyle14.copyWith(
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              const Spacer(),
               Icon(Icons.cancel, color: Colors.red, size: 15.sp),
               10.width,
               Text(
