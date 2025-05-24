@@ -17,9 +17,8 @@ class GetOrdersCubit extends Cubit<GetOrdersState> {
     final result = await chefOrdersRepo.getOrders(status);
 
     result.fold(
-          (failure) => emit(GetOrdersFailure(failure.message)),
-          (orders) => emit(GetOrdersSuccess(orders)),
+      (failure) => emit(GetOrdersFailure(failure.message)),
+      (orders) => emit(GetOrdersSuccess(orders)),
     );
   }
 }
-
