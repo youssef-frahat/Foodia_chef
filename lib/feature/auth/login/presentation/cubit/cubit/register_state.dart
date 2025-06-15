@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 
 import '../../../data/model/auth_response_model/register/register_response_model.dart';

@@ -5,26 +5,25 @@ import 'package:foodia_chef/core/helpers/connectivity_helper.dart';
 import 'package:foodia_chef/core/models/exceptions.dart';
 import 'package:foodia_chef/core/models/failures.dart';
 import 'package:foodia_chef/core/network/api_services.dart';
-import 'package:foodia_chef/feature/home/data/model/get_orders_model/get_orders_model.dart';
-import 'package:foodia_chef/feature/home/data/repo/get_orders/get_orders_repo.dart';
+import 'package:foodia_chef/feature/home/data/repo/get_chef/get_chef_repo.dart';
 
-class GetOrdersRepoImpl implements GetOrdersRepo {
+import '../../model/get_chef_model/get_chef_model.dart';
+
+class GetChefProfileRepoImpl implements GetChefProfileRepo {
   final ApiService apiService;
 
-  GetOrdersRepoImpl({required this.apiService});
+  GetChefProfileRepoImpl({required this.apiService});
 
   @override
-  Future<Either<Failure, GetOrdersModel>> getOrders(String status) async {
+  Future<Either<Failure, GetChefProfileModel>> getChefProfile() async {
     try {
       if (!await ConnectivityHelper.connected) {
         return const Left(NetworkFailure(AppStrings.checkInternetConnection));
       }
 
-      final response = await apiService.get(
-        '${AppUrls.base}/home',
-        queryParameters: {'status': status},
-      );
-      final model = GetOrdersModel.fromJson(response);
+      final response = await apiService.get('${AppUrls.base}/analytics');
+
+      final model = GetChefProfileModel.fromJson(response);
       return Right(model);
     } on NetworkException catch (e) {
       return Left(NetworkFailure(e.message));

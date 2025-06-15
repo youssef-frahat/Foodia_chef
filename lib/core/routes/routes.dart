@@ -6,9 +6,8 @@ class Routes {
   static const String home = '/home';
   static const String bottomNavBar = '/bottomNavBar';
   static const String register2Screen = '/register2Screen';
-  static const String otpScreen = '/otpScreen';  // Corrected typo here
+  static const String otpScreen = '/otpScreen'; // Corrected typo here
   static const String profileScreen = '/profileScreen';
   static const String editProfileScreen = '/editProfileScreen';
   static const String detailsScreen = '/detailsScreen';
 }
-

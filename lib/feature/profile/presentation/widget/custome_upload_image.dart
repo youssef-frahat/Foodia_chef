@@ -71,24 +71,22 @@ class CustomUploadImage extends StatelessWidget {
           width: 120.w,
           height: 120.h,
           fit: BoxFit.cover,
-          placeholder:
-              (context, url) => Container(
-                width: 120.w,
-                height: 120.h,
-                alignment: Alignment.center,
-                child: const CircularProgressIndicator(),
-              ),
-          errorWidget:
-              (context, url, error) => Container(
-                width: 120.w,
-                height: 120.h,
-                alignment: Alignment.center,
-                child: const Icon(
-                  Icons.broken_image,
-                  size: 40,
-                  color: Colors.grey,
-                ),
-              ),
+          placeholder: (context, url) => Container(
+            width: 120.w,
+            height: 120.h,
+            alignment: Alignment.center,
+            child: const CircularProgressIndicator(),
+          ),
+          errorWidget: (context, url, error) => Container(
+            width: 120.w,
+            height: 120.h,
+            alignment: Alignment.center,
+            child: const Icon(
+              Icons.broken_image,
+              size: 40,
+              color: Colors.grey,
+            ),
+          ),
         ),
       );
     } else {

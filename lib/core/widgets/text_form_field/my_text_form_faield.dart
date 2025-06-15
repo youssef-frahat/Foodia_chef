@@ -70,16 +70,15 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
           horizontal: 16,
           vertical: 12,
         ),
-        suffixIcon:
-            widget.isPassword
-                ? IconButton(
-                  icon: Icon(
-                    _obscureText ? Icons.visibility_off : Icons.visibility,
-                    color: Colors.grey,
-                  ),
-                  onPressed: _toggleObscure,
-                )
-                : null,
+        suffixIcon: widget.isPassword
+            ? IconButton(
+                icon: Icon(
+                  _obscureText ? Icons.visibility_off : Icons.visibility,
+                  color: Colors.grey,
+                ),
+                onPressed: _toggleObscure,
+              )
+            : null,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16.0),
           borderSide: const BorderSide(color: Colors.orange, width: 2.0),

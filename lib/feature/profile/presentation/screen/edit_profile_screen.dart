@@ -61,7 +61,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     _currentPasswordController = TextEditingController();
     _newPasswordController = TextEditingController();
     _confirmPasswordController = TextEditingController();
-    _bioController = TextEditingController(text: widget.bio);
+    _bioController = TextEditingController(text: widget.bio ?? '');
+
+    if (widget.image != null &&
+        widget.image!.isNotEmpty &&
+        File(widget.image!).existsSync()) {
+      selectedImage = XFile(widget.image!);
+    } else {
+      selectedImage = null;
+    }
   }
 
   @override
@@ -108,11 +116,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       const AppBarEditProfile(),
                       25.height,
                       CustomUploadImage(
-                        selectedImage: selectedImage == null
-                            ? (widget.image != null && widget.image!.isNotEmpty
-                                ? File(widget.image!)
-                                : null)
-                            : File(selectedImage!.path),
+                        selectedImage: selectedImage != null
+                            ? File(selectedImage!.path)
+                            : null,
                         networkImage: widget.image,
                         onTap: () {
                           showModalBottomSheet(
@@ -282,7 +288,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       selectedImage = image;
     });
 
-    String imagePath = selectedImage!.path.split('/').last;
-    log('Selected image path: $imagePath');
+    log('Selected image path: ${selectedImage!.path}');
   }
 }

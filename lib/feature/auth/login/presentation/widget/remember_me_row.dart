@@ -45,8 +45,7 @@ class _RememberMeRowState extends State<RememberMeRow> {
           ],
         ),
         TextButton(
-          onPressed: () {
-          },
+          onPressed: () {},
           child: Text(
             AppStrings.forgotPassword,
             style: TextStyle(

@@ -20,47 +20,48 @@ class LoginRepositoryImpl extends LoginRepository {
   final ApiService apiService;
 
   LoginRepositoryImpl(this.apiService);
- @override
-Future<Either<Failure, LoginResponseModel>> login({
-  required String phone,
-  required String password,
-}) async {
-  try {
-    if (!await ConnectivityHelper.connected) {
-      return const Left(NetworkFailure(AppStrings.checkInternetConnection));
+  @override
+  Future<Either<Failure, LoginResponseModel>> login({
+    required String phone,
+    required String password,
+  }) async {
+    try {
+      if (!await ConnectivityHelper.connected) {
+        return const Left(NetworkFailure(AppStrings.checkInternetConnection));
+      }
+
+      final response = await apiService.post(
+        AppUrls.login,
+        data: {
+          'phone': phone,
+          'password': password,
+        },
+      );
+
+      log('Login response: $response');
+
+      if (response == null ||
+          response['data'] == null ||
+          response['data']['token'] == null) {
+        return Left(AuthFailure(response['message']));
+      }
+
+      final String token = response['data']['token'];
+      final LoginResponseModel user =
+          LoginResponseModel.fromJson(response['data']);
+
+      await SecureLocalStorage.write(PrefsKeys.token, token);
+      await SecureLocalStorage.write(
+          PrefsKeys.user, jsonEncode(response['data']));
+
+      log(user.toJson().toString());
+      return Right(user);
+    } on NetworkException catch (e) {
+      return Left(NetworkFailure(e.message));
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
     }
-
-    final response = await apiService.post(
-      AppUrls.login,
-      data: {
-        'phone': phone,
-        'password': password,
-      },
-    );
-
-    log('Login response: $response');
-
-    if (response == null ||
-        response['data'] == null ||
-        response['data']['token'] == null) {
-       return Left(AuthFailure(response['message']));
-    }
-    
-    final String token = response['data']['token'];
-    final LoginResponseModel user = LoginResponseModel.fromJson(response['data']);
-
-    await SecureLocalStorage.write(PrefsKeys.token, token);
-    await SecureLocalStorage.write(PrefsKeys.user, jsonEncode(response['data']));
-
-    log(user.toJson().toString());
-    return Right(user);
-  } on NetworkException catch (e) {
-    return Left(NetworkFailure(e.message));
-  } on ServerException catch (e) {
-    return Left(ServerFailure(e.message));
-  } catch (e) {
-    return Left(ServerFailure(e.toString()));
   }
-}
-
 }

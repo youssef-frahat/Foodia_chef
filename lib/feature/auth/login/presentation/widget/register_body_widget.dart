@@ -120,13 +120,14 @@ class _RegisterBodyWidgetState extends State<RegisterBodyWidget> {
               AppMessages.showLoading(context);
             }
             if (state is RegisterSuccess) {
-              AppMessages.showSuccess(context,"تم التسجيل بنجاح");
+              AppMessages.showSuccess(context, "تم التسجيل بنجاح");
               context.pushNamed(Routes.otpScreen,
-                  extra:phoneController.text); // Pass the OTP model to the next screen
+                  extra: phoneController
+                      .text); // Pass the OTP model to the next screen
             }
             if (state is RegisterError) {
               AppMessages.showError(context, state.error);
-            } 
+            }
           },
           builder: (context, state) {
             return Form(

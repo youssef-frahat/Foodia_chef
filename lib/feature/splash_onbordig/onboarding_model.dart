@@ -7,7 +7,7 @@ class OnboardingItem {
   final Text description;
   final String image;
 
-  OnboardingItem( {
+  OnboardingItem({
     required this.textStyle,
     required this.title,
     required this.description,

@@ -4,8 +4,6 @@ import 'package:foodia_chef/feature/home/data/model/update_status_order_model/up
 import 'package:foodia_chef/feature/home/data/model/update_status_order_model/update_status_order_res_model.dart';
 import 'package:foodia_chef/feature/home/data/repo/update_status_order/update_status_order_repo.dart';
 
-
-
 part 'update_status_order_state.dart';
 
 class UpdateOrderStatusCubit extends Cubit<UpdateOrderStatusState> {
@@ -25,13 +23,12 @@ class UpdateOrderStatusCubit extends Cubit<UpdateOrderStatusState> {
     );
 
     result.fold(
-          (failure) {
+      (failure) {
         emit(UpdateOrderStatusError(failure.message));
       },
-          (response) {
+      (response) {
         emit(UpdateOrderStatusSuccess(response));
       },
     );
   }
 }
-

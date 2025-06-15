@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import '../../app_config/app_icons.dart';
 import '../svg_image/svg_image_widget.dart';
 
-
 class CustomBackButton extends StatelessWidget {
   final VoidCallback? onPressed;
   const CustomBackButton({super.key, this.onPressed});

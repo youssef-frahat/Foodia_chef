@@ -4,8 +4,8 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../../../core/models/failures.dart';
 
-abstract class RegisterRepo{
-   Future<Either<Failure, RegisterResponseModel>> register({
+abstract class RegisterRepo {
+  Future<Either<Failure, RegisterResponseModel>> register({
     required String phone,
     required String password,
     required String passwordConfirmation,

@@ -16,10 +16,10 @@ class OtpResponseModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() => {
-    'status': status,
-    'message': message,
-    'data': data,
-  };
+        'status': status,
+        'message': message,
+        'data': data,
+      };
 
   @override
   List<Object?> get props => [status, message, data];

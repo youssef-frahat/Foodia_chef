@@ -24,7 +24,12 @@ class RegisterCubit extends Cubit<RegisterState> {
     }
 
     // التحقق من أن جميع الحقول مكتملة
-    if (name.isEmpty || phone.isEmpty || email.isEmpty || password.isEmpty || confirmPassword.isEmpty || bio.isEmpty) {
+    if (name.isEmpty ||
+        phone.isEmpty ||
+        email.isEmpty ||
+        password.isEmpty ||
+        confirmPassword.isEmpty ||
+        bio.isEmpty) {
       emit(RegisterError('All fields are required.'));
       return;
     }

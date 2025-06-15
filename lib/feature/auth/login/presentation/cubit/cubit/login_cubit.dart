@@ -54,7 +54,6 @@ class LoginCubit extends Cubit<LoginState> {
       emit(
         LoginSuccess(user: user),
       );
-      await SharedPref.sharedPreferences.setString("token", user.data!.token!);
     });
   }
 }

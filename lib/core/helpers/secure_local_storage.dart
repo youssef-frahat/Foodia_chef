@@ -15,7 +15,4 @@ class SecureLocalStorage {
   static Future<void> delete(String key) async {
     await storage.delete(key: key);
   }
-
-
-
 }

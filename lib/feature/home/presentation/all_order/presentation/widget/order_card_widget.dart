@@ -24,7 +24,8 @@ class OrderCardWidget extends StatelessWidget {
     required this.price,
     required this.imageUrl,
     required this.qty,
-    required this.userName, required this.orderId,
+    required this.userName,
+    required this.orderId,
     //required this.orderId,
   });
 

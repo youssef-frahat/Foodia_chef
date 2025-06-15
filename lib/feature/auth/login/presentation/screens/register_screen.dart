@@ -9,7 +9,6 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: RegisterBodyWidget(),
-      
     );
   }
 }

@@ -57,7 +57,8 @@ class RegisterRepositoryImpl extends RegisterRepo {
 
       // هنا التعديل المهم:
       if (response == null || response['status'] != true) {
-        return Left(AuthFailure(response?['message'] ?? 'Unknown error occurred'));
+        return Left(
+            AuthFailure(response?['message'] ?? 'Unknown error occurred'));
       }
 
       final user = RegisterResponseModel.fromJson(response['data']);

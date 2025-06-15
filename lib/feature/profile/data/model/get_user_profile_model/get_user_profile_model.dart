@@ -13,18 +13,17 @@ class GetUserProfileModel extends Equatable {
     return GetUserProfileModel(
       status: json['status'] as bool?,
       message: json['message'] as String?,
-      data:
-          json['data'] == null
-              ? null
-              : UserDataModel.fromJson(json['data'] as Map<String, dynamic>),
+      data: json['data'] == null
+          ? null
+          : UserDataModel.fromJson(json['data'] as Map<String, dynamic>),
     );
   }
 
   Map<String, dynamic> toJson() => {
-    'status': status,
-    'message': message,
-    'data': data?.toJson(),
-  };
+        'status': status,
+        'message': message,
+        'data': data?.toJson(),
+      };
 
   @override
   List<Object?> get props => [status, message, data];

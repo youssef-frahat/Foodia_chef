@@ -5,6 +5,7 @@ import 'package:foodia_chef/core/app_config/app_icons.dart';
 import 'package:foodia_chef/feature/home/presentation/all_order/presentation/screen/all_orders_screen.dart';
 import 'package:foodia_chef/feature/home/presentation/canceled_requests/presentation/screen/canceled_requests_screen.dart';
 import 'package:foodia_chef/feature/home/presentation/chef_info/chef_info.dart';
+import 'package:foodia_chef/feature/home/presentation/chef_info/chef_screen.dart';
 import 'package:foodia_chef/feature/home/presentation/completed_requests/presentation/screen/completed_requests_screen.dart';
 import 'package:foodia_chef/feature/home/presentation/requests_in_preparation/presentation/screen/request_in_preparation_screen.dart';
 
@@ -52,14 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
               thickness: 3.h,
               color: Colors.grey[300],
             ),
-            ChefInfo(
-              chefBio: "Chef Bio",
-              chefName: "Chef Name",
-              followersNum: 0,
-              ordersNum: 0,
-              productsNum: 0,
-              chefImageUrl: "",
-            ),
+            ChefScreen(),
             Divider(
               thickness: 3.h,
               color: Colors.grey[300],

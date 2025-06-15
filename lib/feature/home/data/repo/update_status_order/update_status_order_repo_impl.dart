@@ -11,7 +11,6 @@ import '../../../../../../core/helpers/connectivity_helper.dart';
 import '../../../../../../core/models/failures.dart';
 import '../../../../../../core/models/exceptions.dart';
 
-
 class OrderStatusRepositoryImpl extends OrderStatusRepository {
   final ApiService apiService;
 
@@ -27,7 +26,7 @@ class OrderStatusRepositoryImpl extends OrderStatusRepository {
         return const Left(NetworkFailure(AppStrings.checkInternetConnection));
       }
       final url = '${AppUrls.updateStatusOrder}$orderId';
-      log('Calling URL: $url');  // Check the actual URL
+      log('Calling URL: $url'); // Check the actual URL
 
       final result = await apiService.post(
         url,

@@ -21,7 +21,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSize {
   final String? title;
   final bool? centerTitle, isShown;
   factory CustomAppBar.logoSkipAppBar({Function()? onTap}) => CustomAppBar(
-        
         customTitle: AppLogo.svg(),
       );
   factory CustomAppBar.logoAppBar() => CustomAppBar(
@@ -33,7 +32,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSize {
           PreferredSizeWidget? bottomWidget,
           bool? centerTitle,
           VoidCallback? onBackPressed}) =>
-
       CustomAppBar(
         centerTitle: centerTitle,
         leading: CustomBackButton(
@@ -91,7 +89,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSize {
           elevation: 0,
           backgroundColor: Colors.transparent,
           leadingWidth: 60.w,
-        
           title: AppLogo.svg(),
         ),
       );

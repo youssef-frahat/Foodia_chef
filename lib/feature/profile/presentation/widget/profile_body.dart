@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foodia_chef/core/app_config/app_urls.dart';
 import 'package:foodia_chef/core/extensions/space_extension.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -84,7 +85,7 @@ class ProfileBody extends StatelessWidget {
                             'name': userProfile.name ?? '',
                             'email': userProfile.email ?? '',
                             'phone': userProfile.phone ?? '',
-                            'image': AppStrings.baseUrl + userProfile.image!,
+                            'image': "${AppUrls.baseImage}${userProfile.image}",
                             'bio': userProfile.bio ?? '',
                           },
                         );

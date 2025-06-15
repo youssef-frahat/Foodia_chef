@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:foodia_chef/feature/home/data/model/get_orders_model/get_orders_model.dart';
 import 'package:foodia_chef/feature/home/data/repo/get_orders/get_orders_repo.dart';
-import 'package:meta/meta.dart';
 
 part 'get_orders_state.dart';
 
