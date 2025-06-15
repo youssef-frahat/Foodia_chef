@@ -19,7 +19,7 @@ void main() async {
   setupGetIt();
   runApp(
     EasyLocalization(
-    startLocale: AppLocales.supportedLocales.first,
+      startLocale: AppLocales.supportedLocales.first,
       supportedLocales: AppLocales.supportedLocales,
       fallbackLocale: AppLocales.supportedLocales.first,
       path: 'assets/translations',

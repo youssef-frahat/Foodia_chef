@@ -4,7 +4,6 @@ import 'package:foodia_chef/core/extensions/space_extension.dart';
 
 import '../app_config/app_colors.dart';
 
-
 class AppMessages {
   static Future<dynamic> showLoading(BuildContext context) =>
       showDialog<dynamic>(
@@ -17,7 +16,6 @@ class AppMessages {
           ),
         ),
       );
-
 
   static void showError(BuildContext context, String error,
       [SnackBarAction? action]) {

@@ -26,11 +26,10 @@ class OnboardingPage extends StatelessWidget {
         // Step 19: Add the onboarding description
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40),
-          child: Text(
-            item.description.data as String,
-            textAlign: TextAlign.center,
-            style: item.disStyle // Step 20: Customize the text style
-          ),
+          child: Text(item.description.data as String,
+              textAlign: TextAlign.center,
+              style: item.disStyle // Step 20: Customize the text style
+              ),
         ),
       ],
     );

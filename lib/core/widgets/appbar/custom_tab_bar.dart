@@ -28,9 +28,9 @@ class CustomTabBar extends StatelessWidget implements PreferredSizeWidget {
       indicatorColor: AppColors.primaryColor,
       indicatorWeight: 5,
       labelStyle: Theme.of(context).textTheme.labelLarge!.copyWith(
-        fontSize: 20.sp,
-        fontWeight: FontWeight.w400,
-      ),
+            fontSize: 20.sp,
+            fontWeight: FontWeight.w400,
+          ),
       labelColor: Theme.of(context).textTheme.labelLarge?.color,
       unselectedLabelColor: Theme.of(context).textTheme.labelLarge?.color,
     );

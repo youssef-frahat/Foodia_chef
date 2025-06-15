@@ -9,10 +9,9 @@ class AppIcons {
   static const String notifications = "$_iconBase/notifications.svg";
   static const String frame = "$_iconBase/frame.svg";
 
-   //*Nav Bar
+  //*Nav Bar
   static const String home = "$_navBar/home.svg";
   static const String eating = "$_navBar/eating.svg";
   static const String wallet = "$_navBar/wallet.svg";
   static const String profile = "$_navBar/profile.svg";
-
 }

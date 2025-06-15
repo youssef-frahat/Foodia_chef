@@ -10,7 +10,6 @@ import '../helpers/secure_local_storage.dart';
 import '../models/exceptions.dart';
 import 'dio_factory.dart';
 
-
 class ApiService {
   final Dio dio;
 

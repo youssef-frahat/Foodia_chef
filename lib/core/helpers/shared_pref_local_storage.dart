@@ -2,17 +2,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPref {
   static late SharedPreferences sharedPreferences;
-  static   init() async {
+  static init() async {
     sharedPreferences = await SharedPreferences.getInstance();
   }
 
-   dynamic get({
+  dynamic get({
     required String key,
   }) {
     return sharedPreferences.get(key);
   }
 
-   Future<bool> set({required String key, required dynamic value}) async {
+  Future<bool> set({required String key, required dynamic value}) async {
     if (value is String) {
       return await sharedPreferences.setString(key, value);
     }
@@ -26,15 +26,15 @@ class SharedPref {
     return await sharedPreferences.setDouble(key, value);
   }
 
-   Future<bool> remove({required String key}) async {
+  Future<bool> remove({required String key}) async {
     return await sharedPreferences.remove(key);
   }
 
-   Future<bool> clear() async {
+  Future<bool> clear() async {
     return await sharedPreferences.clear();
   }
 
-   bool containKey({required String key}) {
+  bool containKey({required String key}) {
     return sharedPreferences.containsKey(key);
   }
 }

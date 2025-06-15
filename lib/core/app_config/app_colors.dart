@@ -20,8 +20,6 @@ class AppColors {
   static const Color hintColor = Color(0xffAAAAAA);
   static const Color subTitleColor = Color(0xffBABABA);
   static const Color dividerColor = Color(0xffBABABA);
-  
+
   static const Color black = Color(0xff000000);
-  
-  
 }

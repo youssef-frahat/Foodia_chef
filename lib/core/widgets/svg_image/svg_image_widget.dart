@@ -25,9 +25,9 @@ class SvgImageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap:onTap ,
+      onTap: onTap,
       child: SvgPicture.asset(
-        matchTextDirection: matchTextDirection??false,
+        matchTextDirection: matchTextDirection ?? false,
         image,
         width: width,
         height: height,

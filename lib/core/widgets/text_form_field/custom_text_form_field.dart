@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../app_config/app_colors.dart';
 import '../../app_config/font_styles.dart';
 
-
 class CustomTextField extends StatefulWidget {
   final String hint;
   final String? label;

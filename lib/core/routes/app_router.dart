@@ -6,8 +6,9 @@ import 'package:go_router/go_router.dart';
 
 import '../../feature/auth/login/presentation/screens/login_screen.dart';
 import '../../feature/auth/login/presentation/screens/register_screen.dart';
-import '../../feature/auth/login/presentation/widget/second_register_body.dart';
+import '../../feature/auth/otp/presentation/screen/otp_screen.dart';
 import '../../feature/bottom_navigation_bar/custom_button_nav_bar.dart';
+import '../../feature/profile/presentation/screen/edit_profile_screen.dart';
 import '../../feature/splash_onbordig/onbording.dart';
 
 class AppRouter {
@@ -55,23 +56,82 @@ class AppRouter {
                 child: const RegisterScreen(),
               ),
             ),
+            // GoRoute(
+            //   parentNavigatorKey: appNavigatorKey,
+            //   path: Routes.register2Screen,
+            //   name: Routes.register2Screen,
+            //   pageBuilder: (context, GoRouterState state) =>
+            //       screenWithFadeTransition(
+            //     context: context,
+            //     state: state,
+            //     child: SecondPage(),
+            //   ),
+            // ),
+
             GoRoute(
               parentNavigatorKey: appNavigatorKey,
-              path: Routes.register2Screen,
-              name: Routes.register2Screen,
-              pageBuilder: (context, GoRouterState state) =>
-                  screenWithFadeTransition(
-                context: context,
-                state: state,
-                child: const SecondPage(),
-              ),
+              path: Routes.otpScreen,
+              name: Routes.otpScreen,
+              pageBuilder: (context, GoRouterState state) {
+                final phoneNumber = state.extra;
+                if (phoneNumber is! String || phoneNumber.isEmpty) {
+                  return screenWithFadeTransition(
+                    context: context,
+                    state: state,
+                    child: Text("Invalid phone number"),
+                  );
+                }
+                return screenWithFadeTransition(
+                  context: context,
+                  state: state,
+                  child: OtpScreen(
+                    phoneNumber: phoneNumber,
+                  ),
+                );
+              },
             ),
+            GoRoute(
+              path: Routes.editProfileScreen,
+              name: Routes.editProfileScreen,
+              pageBuilder: (context, state) {
+                final extraData = state.extra;
+
+                if (extraData == null || extraData is! Map<String, dynamic>) {
+                  return screenWithFadeTransition(
+                    context: context,
+                    state: state,
+                    child: const Center(child: Text("بيانات غير صحيحة")),
+                  );
+                }
+
+                // استخرج القيم بأمان من الخريطة
+                final name = extraData['name'] as String? ?? '';
+                final email = extraData['email'] as String? ?? '';
+                final phone = extraData['phone'] as String? ?? '';
+                final image = extraData['image'] as String? ?? '';
+                final bio = extraData['bio'] as String? ?? '';
+
+                return screenWithFadeTransition(
+                  context: context,
+                  state: state,
+                  child: EditProfileScreen(
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    image: image,
+                    bio: bio,
+                  ),
+                );
+              },
+            ),
+
             GoRoute(
               path: Routes.bottomNavBar,
               builder: (context, state) {
                 return BottomNavBar();
               },
             ),
+
             // GoRoute(
             //   parentNavigatorKey: appNavigatorKey,
             //   path: Routes.home,
