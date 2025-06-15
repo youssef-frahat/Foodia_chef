@@ -10,4 +10,8 @@ class Routes {
   static const String profileScreen = '/profileScreen';
   static const String editProfileScreen = '/editProfileScreen';
   static const String detailsScreen = '/detailsScreen';
+  static const String forgotPasswordScreen = '/forgotPasswordScreen';
+  static const String forgotPasswordOtp = '/forgotPasswordOtp';
+  static const String changePasswordScreen = '/changePasswordScreen';
+  
 }

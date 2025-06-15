@@ -4,6 +4,8 @@ import 'package:foodia_chef/core/routes/routing_observer.dart';
 import 'package:foodia_chef/core/routes/screen_withfade_transition.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../feature/auth/forgotPassword/presentation/screen/otp_reset_password_screen.dart';
+import '../../feature/auth/forgotPassword/presentation/widget/forgot_passowrd_chenge.dart';
 import '../../feature/auth/login/presentation/screens/login_screen.dart';
 import '../../feature/auth/login/presentation/screens/register_screen.dart';
 import '../../feature/auth/otp/presentation/screen/otp_screen.dart';
@@ -27,8 +29,7 @@ class AppRouter {
               parentNavigatorKey: appNavigatorKey,
               path: Routes.login,
               name: Routes.login,
-              pageBuilder: (context, GoRouterState state) =>
-                  screenWithFadeTransition(
+              pageBuilder: (context, state) => screenWithFadeTransition(
                 context: context,
                 state: state,
                 child: const LoginScreen(),
@@ -38,8 +39,7 @@ class AppRouter {
               parentNavigatorKey: appNavigatorKey,
               path: Routes.onboardingScreen,
               name: Routes.onboardingScreen,
-              pageBuilder: (context, GoRouterState state) =>
-                  screenWithFadeTransition(
+              pageBuilder: (context, state) => screenWithFadeTransition(
                 context: context,
                 state: state,
                 child: const OnboardingScreen(),
@@ -49,48 +49,74 @@ class AppRouter {
               parentNavigatorKey: appNavigatorKey,
               path: Routes.registerScreen,
               name: Routes.registerScreen,
-              pageBuilder: (context, GoRouterState state) =>
-                  screenWithFadeTransition(
+              pageBuilder: (context, state) => screenWithFadeTransition(
                 context: context,
                 state: state,
                 child: const RegisterScreen(),
               ),
             ),
-            // GoRoute(
-            //   parentNavigatorKey: appNavigatorKey,
-            //   path: Routes.register2Screen,
-            //   name: Routes.register2Screen,
-            //   pageBuilder: (context, GoRouterState state) =>
-            //       screenWithFadeTransition(
-            //     context: context,
-            //     state: state,
-            //     child: SecondPage(),
-            //   ),
-            // ),
-
             GoRoute(
               parentNavigatorKey: appNavigatorKey,
               path: Routes.otpScreen,
               name: Routes.otpScreen,
-              pageBuilder: (context, GoRouterState state) {
+              pageBuilder: (context, state) {
                 final phoneNumber = state.extra;
                 if (phoneNumber is! String || phoneNumber.isEmpty) {
                   return screenWithFadeTransition(
                     context: context,
                     state: state,
-                    child: Text("Invalid phone number"),
+                    child: const Text("Invalid phone number"),
                   );
                 }
                 return screenWithFadeTransition(
                   context: context,
                   state: state,
-                  child: OtpScreen(
-                    phoneNumber: phoneNumber,
-                  ),
+                  child: OtpScreen(phoneNumber: phoneNumber),
                 );
               },
             ),
             GoRoute(
+              parentNavigatorKey: appNavigatorKey,
+              path: Routes.forgotPasswordOtp,
+              name: Routes.forgotPasswordOtp,
+              pageBuilder: (context, state) {
+                final phoneNumber = state.extra;
+                if (phoneNumber is! String || phoneNumber.isEmpty) {
+                  return screenWithFadeTransition(
+                    context: context,
+                    state: state,
+                    child: const Text("Phone number is missing"),
+                  );
+                }
+                return screenWithFadeTransition(
+                  context: context,
+                  state: state,
+                  child: OtpResetPasswordScreen(phoneNumber: phoneNumber),
+                );
+              },
+            ),
+            GoRoute(
+              parentNavigatorKey: appNavigatorKey,
+              path: Routes.changePasswordScreen,
+              name: Routes.changePasswordScreen,
+              pageBuilder: (context, state) {
+                final phoneNumber = state.extra;
+                if (phoneNumber is! String || phoneNumber.isEmpty) {
+                  return screenWithFadeTransition(
+                    context: context,
+                    state: state,
+                    child: const Text("Phone number is missing"),
+                  );
+                }
+                return screenWithFadeTransition(
+                  context: context,
+                  state: state,
+                  child: ForgotPassowrdChenge(phoneNumber: phoneNumber),
+                );
+              },
+            ),
+            GoRoute(
+              parentNavigatorKey: appNavigatorKey,
               path: Routes.editProfileScreen,
               name: Routes.editProfileScreen,
               pageBuilder: (context, state) {
@@ -104,7 +130,6 @@ class AppRouter {
                   );
                 }
 
-                // استخرج القيم بأمان من الخريطة
                 final name = extraData['name'] as String? ?? '';
                 final email = extraData['email'] as String? ?? '';
                 final phone = extraData['phone'] as String? ?? '';
@@ -124,25 +149,16 @@ class AppRouter {
                 );
               },
             ),
-
             GoRoute(
+              parentNavigatorKey: appNavigatorKey,
               path: Routes.bottomNavBar,
-              builder: (context, state) {
-                return BottomNavBar();
-              },
+              name: Routes.bottomNavBar,
+              pageBuilder: (context, state) => screenWithFadeTransition(
+                context: context,
+                state: state,
+                child: const BottomNavBar(),
+              ),
             ),
-
-            // GoRoute(
-            //   parentNavigatorKey: appNavigatorKey,
-            //   path: Routes.home,
-            //   name: Routes.home,
-            //   pageBuilder: (context, GoRouterState state) =>
-            //       screenWithFadeTransition(
-            //     context: context,
-            //     state: state,
-            //     child: const HomeScreen(),
-            //   ),
-            // ),
           ],
         );
 }

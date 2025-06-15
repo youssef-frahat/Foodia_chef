@@ -8,7 +8,7 @@ abstract class FontStyles {
     fontSize: 12.sp,
     fontFamily: 'Changa',
     fontWeight: FontWeight.w300,
-    color: AppColors.hintColor,
+    color: Colors.white,
   );
   static final textStyle14 = TextStyle(
     fontSize: 14.sp,
@@ -19,7 +19,7 @@ abstract class FontStyles {
   static final textStyle16 = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeight.w600,
-    color: AppColors.textformColor,
+    color: Colors.white,
     fontFamily: 'Changa',
   );
   static final textStyle18 = TextStyle(

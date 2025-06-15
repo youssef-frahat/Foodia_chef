@@ -70,7 +70,7 @@ class SignupPromptRow extends StatelessWidget {
                 TextSpan(
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
-                      context.goNamed(Routes.registerScreen);
+                      context.push(Routes.registerScreen);
                     },
                   text: "إنشاء حساب",
                   style: TextStyle(

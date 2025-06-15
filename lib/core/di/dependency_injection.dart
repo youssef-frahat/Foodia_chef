@@ -25,6 +25,8 @@ import 'package:foodia_chef/core/network/api_services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../feature/auth/forgotPassword/data/repo/forgot_passowrd_repo_impl.dart';
+import '../../feature/auth/forgotPassword/presentation/logic/forgetPassword/cubit/forget_password_cubit.dart';
 import '../../feature/home/data/repo/get_chef/get_chef_repo.dart';
 import '../../feature/home/data/repo/get_chef/get_chef_repo_imol.dart';
 import '../../feature/home/presentation/cubit/get_chef/get_chef_cubit.dart';
@@ -73,6 +75,9 @@ void _initRepositories() {
   getIt.registerLazySingleton<GetChefProfileRepo>(
     () => GetChefProfileRepoImpl(apiService: getIt<ApiService>()),
   );
+  getIt.registerLazySingleton<ForgotPassowrdRepoImpl>(
+    () => ForgotPassowrdRepoImpl(getIt()),
+  );
 }
 
 //? Cubits
@@ -103,5 +108,8 @@ void _initCubits() {
 
   getIt.registerFactory<ChefProfileCubit>(
     () => ChefProfileCubit(getIt<GetChefProfileRepo>()),
+  );
+  getIt.registerFactory<ForgetPasswordCubit>(
+    () => ForgetPasswordCubit(getIt()),
   );
 }
