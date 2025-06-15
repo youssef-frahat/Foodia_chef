@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foodia_chef/core/app_config/app_icons.dart';
 import 'package:foodia_chef/feature/home/presentation/all_order/presentation/screen/all_orders_screen.dart';
 import 'package:foodia_chef/feature/home/presentation/canceled_requests/presentation/screen/canceled_requests_screen.dart';
-import 'package:foodia_chef/feature/home/presentation/chef_info/chef_info.dart';
 import 'package:foodia_chef/feature/home/presentation/chef_info/chef_screen.dart';
 import 'package:foodia_chef/feature/home/presentation/completed_requests/presentation/screen/completed_requests_screen.dart';
 import 'package:foodia_chef/feature/home/presentation/requests_in_preparation/presentation/screen/request_in_preparation_screen.dart';
