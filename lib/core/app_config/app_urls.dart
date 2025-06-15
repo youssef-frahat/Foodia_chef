@@ -13,4 +13,6 @@ class AppUrls {
   static const String updateStatusOrder = '$base/update/order/';
   static const String forgetPassword = '$base/forget-password';
   static const String resetPassword = '$base/reset-password';
+    static const String withdraws = '$base/withdraws';
+
 }

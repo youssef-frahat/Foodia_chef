@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodia_chef/core/app_config/app_colors.dart';
 import 'package:foodia_chef/core/app_config/app_strings.dart';
 import 'package:foodia_chef/feature/auth/forgotPassword/presentation/screen/forgotPassword_screen.dart';
-import 'package:go_router/go_router.dart';
 
-import '../../../../../core/routes/routes.dart';
 
 class RememberMeRow extends StatefulWidget {
   final ValueChanged<bool> onRememberChanged;

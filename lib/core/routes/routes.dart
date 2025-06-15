@@ -13,5 +13,6 @@ class Routes {
   static const String forgotPasswordScreen = '/forgotPasswordScreen';
   static const String forgotPasswordOtp = '/forgotPasswordOtp';
   static const String changePasswordScreen = '/changePasswordScreen';
-  
+    static const String walletScreen = '/WalletScreen';
+
 }

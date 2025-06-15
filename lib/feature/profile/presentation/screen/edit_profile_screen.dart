@@ -21,7 +21,7 @@ import '../widget/custome_upload_image.dart';
 class EditProfileScreen extends StatefulWidget {
   final String name;
   final String email;
-  final String phone;
+  final String phone ;
   final String? image;
   final String? bio;
 

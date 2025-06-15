@@ -12,6 +12,7 @@ import '../../feature/auth/otp/presentation/screen/otp_screen.dart';
 import '../../feature/bottom_navigation_bar/custom_button_nav_bar.dart';
 import '../../feature/profile/presentation/screen/edit_profile_screen.dart';
 import '../../feature/splash_onbordig/onbording.dart';
+import '../../feature/wallet/presentation/screens/wallet_screen.dart';
 
 class AppRouter {
   static final GlobalKey<NavigatorState> appNavigatorKey =
@@ -159,6 +160,17 @@ class AppRouter {
                 child: const BottomNavBar(),
               ),
             ),
+            GoRoute(
+  parentNavigatorKey: appNavigatorKey,
+  path: Routes.walletScreen,
+  name: Routes.walletScreen,
+  pageBuilder: (context, state) => screenWithFadeTransition(
+    context: context,
+    state: state,
+    child: const WalletScreen(),
+  ),
+),
+
           ],
         );
 }

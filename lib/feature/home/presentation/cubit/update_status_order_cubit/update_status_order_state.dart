@@ -3,6 +3,7 @@ part of 'update_status_order_cubit.dart';
 sealed class UpdateOrderStatusState extends Equatable {
   const UpdateOrderStatusState();
 
+  @override
   List<Object> get props => [];
 }
 

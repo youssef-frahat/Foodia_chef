@@ -30,6 +30,9 @@ import '../../feature/auth/forgotPassword/presentation/logic/forgetPassword/cubi
 import '../../feature/home/data/repo/get_chef/get_chef_repo.dart';
 import '../../feature/home/data/repo/get_chef/get_chef_repo_imol.dart';
 import '../../feature/home/presentation/cubit/get_chef/get_chef_cubit.dart';
+import '../../feature/wallet/data/repo/withdraw_repo.dart';
+import '../../feature/wallet/data/repo/withdraw_repo_impl.dart';
+import '../../feature/wallet/presentation/logic/cubit/Withdraw_Cubit.dart';
 
 final getIt = GetIt.instance;
 
@@ -75,8 +78,13 @@ void _initRepositories() {
   getIt.registerLazySingleton<GetChefProfileRepo>(
     () => GetChefProfileRepoImpl(apiService: getIt<ApiService>()),
   );
+
   getIt.registerLazySingleton<ForgotPassowrdRepoImpl>(
     () => ForgotPassowrdRepoImpl(getIt()),
+  );
+
+  getIt.registerLazySingleton<WithdrawRepo>(
+    () => WithdrawRepoImpl(getIt<ApiService>()),
   );
 }
 
@@ -109,7 +117,12 @@ void _initCubits() {
   getIt.registerFactory<ChefProfileCubit>(
     () => ChefProfileCubit(getIt<GetChefProfileRepo>()),
   );
+
   getIt.registerFactory<ForgetPasswordCubit>(
     () => ForgetPasswordCubit(getIt()),
+  );
+
+  getIt.registerFactory<WithdrawCubit>(
+    () => WithdrawCubit(getIt<WithdrawRepo>()),
   );
 }
