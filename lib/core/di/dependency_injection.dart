@@ -30,6 +30,8 @@ import '../../feature/auth/forgotPassword/presentation/logic/forgetPassword/cubi
 import '../../feature/home/data/repo/get_chef/get_chef_repo.dart';
 import '../../feature/home/data/repo/get_chef/get_chef_repo_imol.dart';
 import '../../feature/home/presentation/cubit/get_chef/get_chef_cubit.dart';
+import '../../feature/home/presentation/my_food/home/pages/eating/data/cubit/food_cubit.dart';
+import '../../feature/home/presentation/my_food/home/pages/eating/data/repo/add_food_repo.dart';
 import '../../feature/wallet/data/repo/withdraw_repo.dart';
 import '../../feature/wallet/data/repo/withdraw_repo_impl.dart';
 import '../../feature/wallet/presentation/logic/cubit/Withdraw_Cubit.dart';
@@ -86,6 +88,10 @@ void _initRepositories() {
   getIt.registerLazySingleton<WithdrawRepo>(
     () => WithdrawRepoImpl(getIt<ApiService>()),
   );
+    getIt.registerLazySingleton<FoodRepository>(
+    () => FoodRepository(getIt<ApiService>()),
+  );
+
 }
 
 //? Cubits
@@ -125,4 +131,8 @@ void _initCubits() {
   getIt.registerFactory<WithdrawCubit>(
     () => WithdrawCubit(getIt<WithdrawRepo>()),
   );
+    getIt.registerFactory<FoodCubit>(
+    () => FoodCubit(getIt<FoodRepository>()),
+  );
+
 }
